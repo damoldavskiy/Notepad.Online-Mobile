@@ -18,7 +18,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button BackgroundColor="#3C4D60" BorderColor="White" BorderWidth="2" Clicked="Update_Tapped" CornerRadius="120" FontSize="16" HeightRequest="60" HorizontalOptions="End" Margin="40" Text="UPD" TextColor="White" VerticalOptions="End" WidthRequest="60"/>
+            <Button BackgroundColor="#3C4D60" BorderColor="White" BorderWidth="2" Clicked="Update_Tapped" CornerRadius="120" FontSize="16" HeightRequest="60" HorizontalOptions="End" Margin="30" Text="UPD" TextColor="White" VerticalOptions="End" WidthRequest="60"/>
             <local:LoadingView x:Name="loading" IsVisible="False"/>
         </Grid>
     </ContentPage.Content>

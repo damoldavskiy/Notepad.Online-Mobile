@@ -123,19 +123,30 @@ namespace NotepadOnlineMobile
             }
 
             string description;
-            try
+            string text = editor.Text;
+            if ((bool)Settings.Storage.Get("keywords"))
+                try
+                {
+                    description = await Services.TextAnalytics.GetDescriptionAsync(text);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", $"An error occurred while getting key words: {ex.Message}", "OK");
+                    description = text.Length <= 60 ? text : text.Substring(0, 60) + "...";
+                }
+            else
+                description = (text.Length <= 60 ? text : text.Substring(0, 60) + "...").Replace('\n', ' ');
+
+            result = await DataBase.Manager.EditDescriptionAsync(name, description);
+            if (result != DataBase.ReturnCode.Success)
             {
-                description = await Services.TextAnalytics.GetDescriptionAsync(editor.Text);
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", $"An error occurred while getting key words: {ex.Message}", "OK");
-                description = editor.Text.Substring(0, 60) + "...";
+                loading.IsVisible = false;
+                await DisplayAlert("Error", $"An error occurred while updating file's description: {result}", "OK");
+                return;
             }
 
-            await DataBase.Manager.EditDescriptionAsync(name, description);
             Edited?.Invoke(this, new EditEventArgs(name, description));
-            
+
             loading.IsVisible = false;
         }
 
@@ -174,7 +185,7 @@ namespace NotepadOnlineMobile
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-            if ((bool)Application.Current.Properties["askdel"])
+            if ((bool)Settings.Storage.Get("askdel"))
             {
                 var ans = await DisplayActionSheet($"Do you really want to delete {name}", null, null, "Yes", "Cancel");
                 if (ans == "Cancel")

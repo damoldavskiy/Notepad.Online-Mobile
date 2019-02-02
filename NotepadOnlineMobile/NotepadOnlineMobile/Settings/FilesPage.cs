@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace NotepadOnlineMobile.Settings
+﻿namespace NotepadOnlineMobile.Settings
 {
     class FilesPage : AbstractPage
     {
@@ -14,18 +7,37 @@ namespace NotepadOnlineMobile.Settings
             Items.Add(new SettingsItem()
             {
                 Header = "Ask before delete",
-                Value = (bool)Application.Current.Properties["askdel"] ? "Enabled" : "Disabled",
+                Value = (bool)Storage.Get("askdel") ? "Enabled" : "Disabled",
                 Action = (item) =>
                 {
-                    if ((bool)Application.Current.Properties["askdel"])
+                    if ((bool)Storage.Get("askdel"))
                     {
-                        Application.Current.Properties["askdel"] = false;
+                        Storage.Set("askdel", false);
                         item.Value = "Disabled";
                     }
                     else
                     {
-                        Application.Current.Properties["askdel"] = true;
+                        Storage.Set("askdel", true);
                         item.Value = "Enabled";
+                    }
+                }
+            });
+
+            Items.Add(new SettingsItem()
+            {
+                Header = "Description type",
+                Value = (bool)Storage.Get("keywords") ? "Key words" : "First characters",
+                Action = (item) =>
+                {
+                    if ((bool)Storage.Get("keywords"))
+                    {
+                        Storage.Set("keywords", false);
+                        item.Value = "First characters";
+                    }
+                    else
+                    {
+                        Storage.Set("keywords", true);
+                        item.Value = "Key words";
                     }
                 }
             });

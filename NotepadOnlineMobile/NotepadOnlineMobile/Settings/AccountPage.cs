@@ -14,17 +14,17 @@ namespace NotepadOnlineMobile.Settings
             Items.Add(new SettingsItem()
             {
                 Header = "Auto-authorization",
-                Value = (bool)Application.Current.Properties["autoreg"]? "Enabled" : "Disabled",
+                Value = (bool)Storage.Get("autoreg")? "Enabled" : "Disabled",
                 Action = (item) =>
                 {
-                    if ((bool)Application.Current.Properties["autoreg"])
+                    if ((bool)Storage.Get("autoreg"))
                     {
-                        Application.Current.Properties["autoreg"] = false;
+                        Storage.Set("autoreg", false);
                         item.Value = "Disabled";
                     }
                     else
                     {
-                        Application.Current.Properties["autoreg"] = true;
+                        Storage.Set("autoreg", true);
                         item.Value = "Enabled";
                     }
                 }
@@ -35,9 +35,9 @@ namespace NotepadOnlineMobile.Settings
                 Header = "Log out",
                 Action = (item) =>
                 {
-                    Application.Current.Properties.Remove("login");
-                    Application.Current.Properties.Remove("password");
-                    Application.Current.Properties.Remove("token");
+                    Storage.Set("login", "");
+                    Storage.Set("password", "");
+                    Storage.Set("token", "");
                     Application.Current.MainPage = new NavigationPage(new LoginPage());
                 }
             });

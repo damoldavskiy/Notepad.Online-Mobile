@@ -40,11 +40,8 @@ namespace Services
                 }));
 
             var desc = string.Join(", ", keys.Documents[0].KeyPhrases);
-
-            if (desc.Length <= 60)
-                return desc;
-            else
-                return desc.Substring(0, 60) + "...";
+            
+            return desc.Length <= 60 ? desc : desc.Substring(0, 60) + "...";
         }
     }
 }

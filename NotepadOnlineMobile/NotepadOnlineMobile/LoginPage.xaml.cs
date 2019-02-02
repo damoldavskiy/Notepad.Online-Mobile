@@ -1,5 +1,7 @@
 ﻿using System;
 
+using NotepadOnlineMobile.Settings;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,18 +22,18 @@ namespace NotepadOnlineMobile
 
         private async void LoginPage_PageLoaded(object sender, EventArgs e)
         {
-            var properties = Application.Current.Properties;
+            Storage.Load();
 
-            if (properties.ContainsKey("login") && properties.ContainsKey("password") && properties.ContainsKey("token") && properties.ContainsKey("autoreg") && properties.ContainsKey("askdel"))
+            if (Storage.Get("login").ToString() != "")
             {
-                entryLogin.Text = properties["login"].ToString();
-                entryPassword.Text = properties["password"].ToString();
+                entryLogin.Text = Storage.Get("login").ToString();
+                entryPassword.Text = Storage.Get("password").ToString();
 
-                if (!(bool)properties["autoreg"])
+                if (!(bool)Storage.Get("autoreg"))
                     return;
 
                 loading.IsVisible = true;
-                var result = await DataBase.Manager.AuthorizeAsync(properties["login"].ToString(), properties["password"].ToString(), properties["token"].ToString());
+                var result = await DataBase.Manager.AuthorizeAsync(Storage.Get("login").ToString(), Storage.Get("password").ToString(), Storage.Get("token").ToString());
                 loading.IsVisible = false;
 
                 if (result != DataBase.ReturnCode.Success)
@@ -59,12 +61,9 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            var properties = Application.Current.Properties;
-            properties["login"] = DataBase.Manager.Login;
-            properties["password"] = DataBase.Manager.Password;
-            properties["token"] = DataBase.Manager.Token;
-            properties["autoreg"] = properties.ContainsKey("autoreg") ? properties["autoreg"] : true;
-            properties["askdel"] = properties.ContainsKey("askdel") ? properties["askdel"] : false;
+            Storage.Set("login", DataBase.Manager.Login);
+            Storage.Set("password", DataBase.Manager.Password);
+            Storage.Set("token", DataBase.Manager.Token);
 
             Application.Current.MainPage = new MainPage();
         }
