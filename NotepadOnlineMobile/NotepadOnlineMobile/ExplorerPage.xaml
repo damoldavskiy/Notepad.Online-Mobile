@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NotepadOnlineMobile"
+             x:Class="NotepadOnlineMobile.ExplorerPage"
+             Title="Explorer">
+    <ContentPage.Content>
+        <Grid>
+            <ListView x:Name="menu" RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#283B4F" Margin="5">
+                                <Label FontSize="20" Margin="10" Text="{Binding Name}" TextColor="White"/>
+                                <Label FontSize="14" Margin="5" Text="{Binding Description}" TextColor="White"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button BackgroundColor="#3C4D60" BorderColor="White" BorderWidth="2" Clicked="Update_Tapped" CornerRadius="120" FontSize="16" HeightRequest="60" HorizontalOptions="End" Margin="40" Text="UPD" TextColor="White" VerticalOptions="End" WidthRequest="60"/>
+            <local:LoadingView x:Name="loading" IsVisible="False"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

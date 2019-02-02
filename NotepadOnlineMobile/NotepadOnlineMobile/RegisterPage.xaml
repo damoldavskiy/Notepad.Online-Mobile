@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NotepadOnlineMobile"
+             x:Class="NotepadOnlineMobile.RegisterPage"
+             BackgroundColor="#3C4D60">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#91A3B7"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderRadius" Value="8"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Margin="32" VerticalOptions="Center">
+                <Label FontSize="24" HorizontalOptions="Center" Text="New account" TextColor="White"/>
+                <Entry x:Name="entryLogin" HorizontalTextAlignment="Center" Keyboard="Email" MaxLength="40" Placeholder="Login"/>
+                <Entry x:Name="entryPassword" HorizontalTextAlignment="Center" IsPassword="True" MaxLength="40" Placeholder="Password"/>
+                <Entry x:Name="entryConfirmPassword" HorizontalTextAlignment="Center" IsPassword="True" MaxLength="40" Placeholder="Confirm password"/>
+                <Button Clicked="Register_Clicked" Text="Register"/>
+            </StackLayout>
+            <local:LoadingView x:Name="loading" IsVisible="False"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
