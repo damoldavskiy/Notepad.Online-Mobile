@@ -161,6 +161,9 @@ namespace NotepadOnlineMobile
             input.IsVisible = false;
             var text = input.Field.Text.Trim();
 
+            if (text == name)
+                return;
+
             if (!WindowsNamingRules.IsNameCorrect(text))
             {
                 await DisplayAlert("Error", "The new name contains unacceptable symbols", "OK");
@@ -187,7 +190,7 @@ namespace NotepadOnlineMobile
         {
             if ((bool)Settings.Storage.Get("askdel"))
             {
-                var ans = await DisplayActionSheet($"Do you really want to delete {name}", null, null, "Yes", "Cancel");
+                var ans = await DisplayActionSheet($"Do you really want to delete {name}?", null, null, "Yes", "Cancel");
                 if (ans == "Cancel")
                     return;
             }

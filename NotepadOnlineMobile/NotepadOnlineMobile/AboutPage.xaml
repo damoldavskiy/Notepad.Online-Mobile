@@ -4,6 +4,6 @@
              x:Class="NotepadOnlineMobile.AboutPage"
              Title="About">
     <ContentPage.Content>
-        <Label x:Name="content" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Label x:Name="content" Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
     </ContentPage.Content>
 </ContentPage>
