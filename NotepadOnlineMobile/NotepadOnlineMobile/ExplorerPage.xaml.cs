@@ -96,7 +96,7 @@ namespace NotepadOnlineMobile
 
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while observing files: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while observing files: {result.Item1}", "OK");
                 loading.IsVisible = false;
                 return;
             }
@@ -107,7 +107,7 @@ namespace NotepadOnlineMobile
 
                 if (result.Item1 != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred while downloading file {name}: {result}", "OK");
+                    await DisplayAlert("Error", $"An error occurred while downloading file {name}: {result.Item1}", "OK");
                     loading.IsVisible = false;
                     return;
                 }
