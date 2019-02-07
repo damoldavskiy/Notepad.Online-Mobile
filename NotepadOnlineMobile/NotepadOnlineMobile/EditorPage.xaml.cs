@@ -127,7 +127,8 @@ namespace NotepadOnlineMobile
             if ((bool)Settings.Storage.Get("keywords"))
                 try
                 {
-                    description = await Services.TextAnalytics.GetDescriptionAsync(text);
+                    var words = await CognitiveServices.TextAnalytics.KeyPhrasesAsync(new[] { text });
+                    description = string.Join("; ", words[0]);
                 }
                 catch (Exception ex)
                 {

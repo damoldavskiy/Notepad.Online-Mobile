@@ -118,7 +118,7 @@ namespace NotepadOnlineMobile
             loading.IsVisible = false;
         }
 
-        private async Task CreateFile(string name="New file", string desc="Empty file", string text="")
+        private async Task CreateFileAsync(string name="New file", string desc="Empty file", string text="")
         {
             if (loading.IsVisible)
                 return;
@@ -146,7 +146,7 @@ namespace NotepadOnlineMobile
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await CreateFile();
+            await CreateFileAsync();
         }
 
         private async void AddPhoto_Clicked(object sender, EventArgs e)
@@ -166,22 +166,12 @@ namespace NotepadOnlineMobile
 
                     if (photo == null)
                         return;
-
-                    var selected = await DisplayActionSheet("Select text type", "Cancel", null, "Printed", "Handwritten");
-                    string[] text;
-
+                    
                     loading.IsVisible = true;
-
-                    if (selected == "Printed")
-                        text = await Services.TextRecognition.ExtractTextAsync(photo.Path, TextRecognitionMode.Printed);
-                    else if (selected == "Handwritten")
-                        text = await Services.TextRecognition.ExtractTextAsync(photo.Path, TextRecognitionMode.Handwritten);
-                    else
-                        return;
-
+                    var text = await CognitiveServices.ComputerVision.OCRAsync(photo.Path);
                     loading.IsVisible = false;
 
-                    await CreateFile("New file", "Recognized text from photo", string.Join("\n", text));
+                    await CreateFileAsync("New file", "Recognized text from photo", text);
                 }
                 else
                     await DisplayAlert("Error", "Camera is not available", "OK");

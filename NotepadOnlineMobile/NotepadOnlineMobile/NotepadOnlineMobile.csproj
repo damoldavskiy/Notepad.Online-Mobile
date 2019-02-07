@@ -19,8 +19,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="NotepadOnlineDataBase">
-      <HintPath>..\..\..\NotepadOnlineDataBase\NotepadOnlineDataBase\bin\Debug\NotepadOnlineDataBase.dll</HintPath>
+    <Reference Include="CognitiveServices">
+      <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Debug\CognitiveServices.dll</HintPath>
+    </Reference>
+    <Reference Include="DataBase">
+      <HintPath>..\..\..\NotepadOnlineConnection\DataBase\bin\Debug\DataBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
 
