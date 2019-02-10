@@ -3,27 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.ConfirmPage"
-             BackgroundColor="#3C4D60">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry">
-                <Setter Property="PlaceholderColor" Value="#91A3B7"/>
-                <Setter Property="TextColor" Value="White"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderRadius" Value="8"/>
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="TextColor" Value="White"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <Grid>
-            <StackLayout Margin="32" VerticalOptions="Center">
-                <Entry x:Name="entryCode" HorizontalTextAlignment="Center" Keyboard="Numeric" MaxLength="4" Placeholder="Enter the confirm code"/>
-                <Button Clicked="Submit_Clicked" Text="Submit"/>
+            <StackLayout Margin="30" VerticalOptions="Center">
+                <Entry x:Name="CodeEntry" Keyboard="Numeric" MaxLength="4" Placeholder="Confirm code" Style="{StaticResource LoginEntry}"/>
+                <Button Clicked="Submit_Clicked" Text="Submit" Style="{StaticResource LoginButton}"/>
             </StackLayout>
             <local:LoadingView x:Name="loading" IsVisible="False"/>
         </Grid>

@@ -54,40 +54,34 @@ namespace NotepadOnlineMobile
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
-
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class ExplorerPage : ContentPage
     {
-        event EventHandler PageLoaded;
-
         ObservableCollection<DataItem> items;
 
         public ExplorerPage()
         {
             InitializeComponent();
 
-            var photo = new ToolbarItem
+            var update = new ToolbarItem
             {
-                Text = "Photo"
+                Icon = new FileImageSource()
+                {
+                    File = "update.png"
+                }
             };
-            ToolbarItems.Add(photo);
-            photo.Clicked += AddPhoto_Clicked;
-
-            var add = new ToolbarItem
-            {
-                Text = "New"
-            };
-            ToolbarItems.Add(add);
-            add.Clicked += AddItem_Clicked;
-            
-            PageLoaded += ExplorerPage_PageLoaded;
-            PageLoaded(this, EventArgs.Empty);
+            ToolbarItems.Add(update);
+            update.Clicked += Update_Tapped;
             
             menu.ItemSelected += Menu_ItemSelected;
+            LoadData();
         }
 
-        private async void ExplorerPage_PageLoaded(object sender, EventArgs e)
+        private async void LoadData()
         {
+            if (loading.IsVisible)
+                return;
+
             loading.IsVisible = true;
             var result = await DataBase.Manager.GetNamesAsync();
 
@@ -141,7 +135,7 @@ namespace NotepadOnlineMobile
 
         private void Update_Tapped(object sender, EventArgs e)
         {
-            ExplorerPage_PageLoaded(sender, e);
+            LoadData();
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)

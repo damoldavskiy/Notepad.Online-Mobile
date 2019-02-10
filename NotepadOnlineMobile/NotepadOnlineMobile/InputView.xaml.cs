@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class InputView : ContentView
+    public partial class InputView : ContentView
 	{
         public Entry Field;
         public Button Submit;
 
-		public InputView ()
+        public InputView()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
             Field = field;
             Submit = submit;
 		}
-	}
+
+        private void Cancel_Clicked(object sender, System.EventArgs e)
+        {
+            IsVisible = false;
+            field.Text = "";
+        }
+    }
 }

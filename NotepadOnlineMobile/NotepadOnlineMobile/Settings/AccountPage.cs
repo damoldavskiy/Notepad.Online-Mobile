@@ -38,7 +38,7 @@ namespace NotepadOnlineMobile.Settings
                     Storage.Set("login", "");
                     Storage.Set("password", "");
                     Storage.Set("token", "");
-                    Application.Current.MainPage = new NavigationPage(new LoginPage());
+                    Application.Current.MainPage = new LoginRegisterPage();
                 }
             });
         }

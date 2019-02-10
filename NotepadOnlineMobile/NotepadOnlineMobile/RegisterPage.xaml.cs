@@ -1,25 +1,24 @@
 ﻿using System;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NotepadOnlineMobile
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterPage : ContentPage
+    public partial class RegisterPage : ContentPage
 	{
 		public RegisterPage()
 		{
 			InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
 		}
 
         private async void Register_Clicked(object sender, EventArgs e)
         {
-            var login = entryLogin.Text?.Trim() ?? "";
-            var password = entryPassword.Text?.Trim() ?? "";
-            var confirmPassword = entryConfirmPassword.Text?.Trim() ?? "";
+            var login = emailEntry.Text?.Trim() ?? "";
+            var password = passwordEntry.Text?.Trim() ?? "";
+            var passwordConfirm = passwordConfirmEntry.Text?.Trim() ?? "";
 
-            if (password != confirmPassword)
+            if (password != passwordConfirm)
             {
                 await DisplayAlert("Error", "You should confirm your password by typing it to the needed box", "OK");
                 return;
@@ -31,7 +30,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while creating new user: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during creating new user: {result}", "OK");
                 return;
             }
 

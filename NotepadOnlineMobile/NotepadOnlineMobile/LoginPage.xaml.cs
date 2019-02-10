@@ -1,44 +1,41 @@
 ﻿using System;
 
-using NotepadOnlineMobile.Settings;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NotepadOnlineMobile
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
+    public partial class LoginPage : ContentPage
 	{
-        event EventHandler PageLoaded;
-
-		public LoginPage()
+        public LoginPage()
 		{
 			InitializeComponent();
+            InitializeLogin();
 
-            PageLoaded += LoginPage_PageLoaded; ;
-            PageLoaded(this, EventArgs.Empty);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private async void LoginPage_PageLoaded(object sender, EventArgs e)
+        private async void InitializeLogin()
         {
-            Storage.Load();
+            Settings.Storage.Load();
+            var login = Settings.Storage.Get("login").ToString();
+            var password = Settings.Storage.Get("password").ToString();
+            var token = Settings.Storage.Get("token").ToString();
 
-            if (Storage.Get("login").ToString() != "")
+            if (login != "")
             {
-                entryLogin.Text = Storage.Get("login").ToString();
-                entryPassword.Text = Storage.Get("password").ToString();
+                emailEntry.Text = login.ToString();
+                passwordEntry.Text = password.ToString();
 
-                if (!(bool)Storage.Get("autoreg"))
+                if (!(bool)Settings.Storage.Get("autoreg"))
                     return;
 
                 loading.IsVisible = true;
-                var result = await DataBase.Manager.AuthorizeAsync(Storage.Get("login").ToString(), Storage.Get("password").ToString(), Storage.Get("token").ToString());
+                var result = await DataBase.Manager.AuthorizeAsync(login, password, token);
                 loading.IsVisible = false;
 
                 if (result != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred while authorizing: {result}", "OK");
+                    await DisplayAlert("Error", $"An error occurred during login: {result}", "OK");
                     return;
                 }
 
@@ -46,24 +43,24 @@ namespace NotepadOnlineMobile
             }
         }
 
-        private async void Authorize_Clicked(object sender, EventArgs e)
+        private async void Signin_Clicked(object sender, EventArgs e)
         {
-            var login = entryLogin.Text?.Trim() ?? "";
-            var password = entryPassword.Text?.Trim() ?? "";
+            var email = emailEntry.Text?.Trim() ?? "";
+            var password = passwordEntry.Text?.Trim() ?? "";
 
             loading.IsVisible = true;
-            var result = await DataBase.Manager.AuthorizeAsync(login, password);
+            var result = await DataBase.Manager.AuthorizeAsync(email, password);
             loading.IsVisible = false;
-
+            
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while autorizing: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during login: {result}", "OK");
                 return;
             }
-
-            Storage.Set("login", DataBase.Manager.Login);
-            Storage.Set("password", DataBase.Manager.Password);
-            Storage.Set("token", DataBase.Manager.Token);
+            
+            Settings.Storage.Set("login", DataBase.Manager.Login);
+            Settings.Storage.Set("password", DataBase.Manager.Password);
+            Settings.Storage.Set("token", DataBase.Manager.Token);
 
             Application.Current.MainPage = new MainPage();
         }

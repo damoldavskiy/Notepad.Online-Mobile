@@ -4,10 +4,10 @@
              x:Class="NotepadOnlineMobile.LoadingView">
   <ContentView.Content>
         <Grid>
-            <BoxView Color="Black" Opacity="0.5"/>
+            <BoxView Color="Black" CornerRadius="20" Opacity="0.8" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center"/>
             <StackLayout VerticalOptions="Center">
-                <ActivityIndicator IsRunning="True" IsVisible="True"/>
-                <Label Text="Loading" TextColor="White" HorizontalOptions="Center"/>
+                <ActivityIndicator Color="White" IsRunning="True"/>
+                <Label Text="Wait..." TextColor="White" HorizontalOptions="Center"/>
             </StackLayout>
         </Grid>
     </ContentView.Content>

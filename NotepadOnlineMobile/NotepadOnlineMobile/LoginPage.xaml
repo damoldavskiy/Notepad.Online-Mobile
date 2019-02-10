@@ -3,32 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.LoginPage"
-             BackgroundColor="#3C4D60">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry">
-                <Setter Property="PlaceholderColor" Value="#91A3B7"/>
-                <Setter Property="TextColor" Value="White"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderRadius" Value="8"/>
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="TextColor" Value="White"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <Grid>
-            <StackLayout Margin="32" VerticalOptions="Center">
-                <Label FontSize="32" HorizontalOptions="Center" Text="Notepad.Online" TextColor="White"/>
-                <Entry x:Name="entryLogin" HorizontalTextAlignment="Center" Keyboard="Email" MaxLength="40" Placeholder="Login"/>
-                <Entry x:Name="entryPassword" HorizontalTextAlignment="Center" IsPassword="True" MaxLength="40" Placeholder="Password"/>
-                <StackLayout Orientation="Horizontal">
-                    <Button Clicked="Authorize_Clicked" HorizontalOptions="FillAndExpand" Text="Authorize"/>
-                    <Button Clicked="Register_Clicked"  HorizontalOptions="FillAndExpand" Text="Register"/>
-                </StackLayout>
+            <StackLayout Margin="30" VerticalOptions="Center">
+                <Label FontSize="30" Margin="0,0,0,10" HorizontalOptions="Center" Text="Log in"/>
+                <Entry x:Name="emailEntry" Keyboard="Email" Placeholder="E-mail" Style="{StaticResource LoginEntry}"/>
+                <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password" Style="{StaticResource LoginEntry}"/>
+                <Button Clicked="Signin_Clicked" Text="Sign in" Margin="0,10,0,0" Style="{StaticResource LoginButton}"/>
             </StackLayout>
             <local:LoadingView x:Name="loading" IsVisible="False"/>
         </Grid>

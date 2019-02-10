@@ -2,27 +2,22 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotepadOnlineMobile.InputView">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry">
-                <Setter Property="PlaceholderColor" Value="#91A3B7"/>
-                <Setter Property="TextColor" Value="White"/>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderRadius" Value="8"/>
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="TextColor" Value="White"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    <ContentView.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource LoginButton}">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="BorderColor" Value="White"/>
+            <Setter Property="BorderRadius" Value="2"/>
+        </Style>
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-            <BoxView Color="Black" Opacity="0.5"/>
-            <StackLayout Margin="32" VerticalOptions="Center">
-                <Entry x:Name="field" HorizontalOptions="FillAndExpand" Placeholder="Enter new name"/>
-                <Button x:Name="submit" HorizontalOptions="FillAndExpand" Text="Submit"/>
+            <BoxView Color="Black" Margin="30" CornerRadius="20" Opacity="0.8" HeightRequest="100" VerticalOptions="Center"/>
+            <StackLayout Margin="50" VerticalOptions="Center">
+                <Entry x:Name="field" HorizontalOptions="FillAndExpand" PlaceholderColor="#808080" TextColor="White" Placeholder="Enter new name"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="submit" HorizontalOptions="FillAndExpand" Text="Submit"/>
+                    <Button Clicked="Cancel_Clicked" HorizontalOptions="FillAndExpand" Text="Cancel"/>
+                </StackLayout>
             </StackLayout>
         </Grid>
     </ContentView.Content>

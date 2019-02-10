@@ -7,7 +7,7 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
             <StackLayout>
-                <Grid BackgroundColor="#E5E7E9">
+                <Grid BackgroundColor="#283593">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="60"/>
@@ -16,9 +16,9 @@
                         <ColumnDefinition Width="60"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label FontSize="20" Margin="30,0,0,0" Text="Notepad.Online" FontAttributes="Bold" VerticalOptions="End" Grid.ColumnSpan="2"/>
+                    <Label FontSize="20" Margin="30,0,0,0" Text="Notepad.Online" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Grid.ColumnSpan="2"/>
                     <Image Source="user.png" WidthRequest="50" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                    <Label FontSize="18" Text="{Binding UserName}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+                    <Label FontSize="18" Text="{Binding UserName}" TextColor="White" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
                 <ListView x:Name="menu" RowHeight="60">
                     <ListView.ItemTemplate>
