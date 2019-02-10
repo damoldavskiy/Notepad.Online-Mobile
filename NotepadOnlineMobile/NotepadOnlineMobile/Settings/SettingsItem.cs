@@ -11,6 +11,9 @@ namespace NotepadOnlineMobile.Settings
 
         string header;
         string value;
+        bool valueVisible;
+        bool switcherVisible;
+        bool switcherToggled;
         Action<SettingsItem> action;
 
         public string Header
@@ -19,8 +22,8 @@ namespace NotepadOnlineMobile.Settings
             { return header; }
             set
             {
-                OnPropertyChanged("Header");
                 header = value;
+                OnPropertyChanged("Header");
             }
         }
 
@@ -30,8 +33,41 @@ namespace NotepadOnlineMobile.Settings
             { return value; }
             set
             {
-                OnPropertyChanged("Value");
                 this.value = value;
+                OnPropertyChanged("Value");
+            }
+        }
+
+        public bool ValueVisible
+        {
+            get
+            { return valueVisible; }
+            set
+            {
+                valueVisible = value;
+                OnPropertyChanged("ValueVisible");
+            }
+        }
+
+        public bool SwitcherVisible
+        {
+            get
+            { return switcherVisible; }
+            set
+            {
+                switcherVisible = value;
+                OnPropertyChanged("SwitcherVisible");
+            }
+        }
+
+        public bool SwitcherToggled
+        {
+            get
+            { return switcherToggled; }
+            set
+            {
+                switcherToggled = value;
+                OnPropertyChanged("SwitcherToggled");
             }
         }
 
@@ -41,8 +77,8 @@ namespace NotepadOnlineMobile.Settings
             { return action; }
             set
             {
-                OnPropertyChanged("Action");
                 action = value;
+                OnPropertyChanged("Action");
             }
         }
 

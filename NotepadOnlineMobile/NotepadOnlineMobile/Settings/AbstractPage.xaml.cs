@@ -29,7 +29,7 @@ namespace NotepadOnlineMobile.Settings
             ((ListView)sender).SelectedItem = null;
             if (item == null)
                 return;
-
+            
             item.Action(item);
         }
     }

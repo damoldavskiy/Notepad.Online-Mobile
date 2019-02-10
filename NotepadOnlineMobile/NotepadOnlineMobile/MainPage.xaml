@@ -9,8 +9,8 @@
             <StackLayout>
                 <Grid BackgroundColor="#283593">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
@@ -20,7 +20,7 @@
                     <Image Source="user.png" WidthRequest="50" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     <Label FontSize="18" Text="{Binding UserName}" TextColor="White" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
-                <ListView x:Name="menu" RowHeight="60">
+                <ListView x:Name="menu" RowHeight="60" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

@@ -1,18 +1,13 @@
-﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NotepadOnlineMobile
 {
@@ -71,7 +66,7 @@ namespace NotepadOnlineMobile
                 }
             };
             ToolbarItems.Add(update);
-            update.Clicked += Update_Tapped;
+            update.Clicked += Update_Clicked;
             
             menu.ItemSelected += Menu_ItemSelected;
             LoadData();
@@ -133,7 +128,7 @@ namespace NotepadOnlineMobile
             items.Add(new DataItem() { Name = name, Description = desc });
         }
 
-        private void Update_Tapped(object sender, EventArgs e)
+        private void Update_Clicked(object sender, EventArgs e)
         {
             LoadData();
         }

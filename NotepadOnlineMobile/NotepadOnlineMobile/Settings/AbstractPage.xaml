@@ -1,20 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.Settings.AbstractPage"
              BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
-        <ListView x:Name="list" ItemSelected="ItemSelected" RowHeight="60">
+        <ListView x:Name="list" ItemSelected="ItemSelected" RowHeight="60" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="15,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Header}" Margin="20,0,0,0" TextColor="Black" FontSize="20" VerticalOptions="Center"/>
-                            <Label Text="{Binding Value}" Margin="0,0,20,0" FontSize="18" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1"/>
+                            <Label Text="{Binding Header}" TextColor="{StaticResource TextDark}" FontSize="16" VerticalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger Binding="{Binding ValueVisible}" TargetType="Label" Value="False">
+                                        <Setter Property="Grid.RowSpan" Value="2"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label Text="{Binding Value}" Grid.Row="1" IsVisible="{Binding ValueVisible}" TextColor="{StaticResource TextLight}" FontSize="14"/>
+                            <local:SettingsSwitch IsToggled="{Binding SwitcherToggled}" IsVisible="{Binding SwitcherVisible}" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -8,17 +8,21 @@
             {
                 Header = "Ask before delete",
                 Value = (bool)Storage.Get("askdel") ? "Enabled" : "Disabled",
+                ValueVisible = true,
+                SwitcherVisible = true,
                 Action = (item) =>
                 {
                     if ((bool)Storage.Get("askdel"))
                     {
                         Storage.Set("askdel", false);
                         item.Value = "Disabled";
+                        item.SwitcherToggled = false;
                     }
                     else
                     {
                         Storage.Set("askdel", true);
                         item.Value = "Enabled";
+                        item.SwitcherToggled = true;
                     }
                 }
             });
@@ -27,9 +31,12 @@
             {
                 Header = "Description type",
                 Value = (bool)Storage.Get("keywords") ? "Key words" : "First characters",
-                Action = (item) =>
+                ValueVisible = true,
+                Action = async (item) =>
                 {
-                    if ((bool)Storage.Get("keywords"))
+                    var r = await DisplayActionSheet("Description type", "Cancel", null, "Key words", "First characters");
+
+                    if (r == "First characters")
                     {
                         Storage.Set("keywords", false);
                         item.Value = "First characters";

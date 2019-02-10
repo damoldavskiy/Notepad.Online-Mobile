@@ -14,18 +14,23 @@ namespace NotepadOnlineMobile.Settings
             Items.Add(new SettingsItem()
             {
                 Header = "Auto-authorization",
-                Value = (bool)Storage.Get("autoreg")? "Enabled" : "Disabled",
+                Value = (bool)Storage.Get("autoreg") ? "Enabled" : "Disabled",
+                ValueVisible = true,
+                SwitcherVisible = true,
+                SwitcherToggled = (bool)Storage.Get("autoreg"),
                 Action = (item) =>
                 {
                     if ((bool)Storage.Get("autoreg"))
                     {
                         Storage.Set("autoreg", false);
                         item.Value = "Disabled";
+                        item.SwitcherToggled = false;
                     }
                     else
                     {
                         Storage.Set("autoreg", true);
                         item.Value = "Enabled";
+                        item.SwitcherToggled = true;
                     }
                 }
             });
