@@ -7,7 +7,7 @@
         <Grid>
             <Editor x:Name="editor"/>
             <local:InputView x:Name="input" IsVisible="False"/>
-            <local:LoadingView x:Name="loading" IsVisible="False"/>
+            <local:LoadingView IsVisible="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

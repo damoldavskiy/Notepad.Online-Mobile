@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NotepadOnlineMobile
 {
-    static class WindowsNamingRules
+    public static class WindowsNamingRules
     {
         public static bool IsNameCorrect(string name)
         {

@@ -5,6 +5,14 @@
              BackgroundColor="{StaticResource Background}"
              Title="About">
     <ContentPage.Content>
-        <Label x:Name="content" Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <BoxView BackgroundColor="{StaticResource PrimaryDark}"/>
+            <Image Source="logo.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label x:Name="content" Margin="20" Grid.Row="1"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

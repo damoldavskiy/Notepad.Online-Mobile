@@ -5,16 +5,44 @@ using Xamarin.Forms;
 namespace NotepadOnlineMobile
 {
     public partial class LoginPage : ContentPage
-	{
+    {
+        private string email;
+        private string password;
+
+        public string Email
+        {
+            get
+            {
+                return email ?? "";
+            }
+            set
+            {
+                email = value?.Trim();
+                OnPropertyChanged("Email");
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password ?? "";
+            }
+            set
+            {
+                password = value?.Trim();
+                OnPropertyChanged("Password");
+            }
+        }
+
         public LoginPage()
 		{
 			InitializeComponent();
-            InitializeLogin();
-
-            NavigationPage.SetHasNavigationBar(this, false);
+            InitializeLogic();
+            BindingContext = this;
         }
 
-        private async void InitializeLogin()
+        private async void InitializeLogic()
         {
             Settings.Storage.Load();
             var login = Settings.Storage.Get("login").ToString();
@@ -23,15 +51,15 @@ namespace NotepadOnlineMobile
 
             if (login != "")
             {
-                emailEntry.Text = login.ToString();
-                passwordEntry.Text = password.ToString();
+                Email = login;
+                Password = password;
 
                 if (!(bool)Settings.Storage.Get("autoreg"))
                     return;
 
-                loading.IsVisible = true;
+                IsBusy = true;
                 var result = await DataBase.Manager.AuthorizeAsync(login, password, token);
-                loading.IsVisible = false;
+                IsBusy = false;
 
                 if (result != DataBase.ReturnCode.Success)
                 {
@@ -45,12 +73,9 @@ namespace NotepadOnlineMobile
 
         private async void Signin_Clicked(object sender, EventArgs e)
         {
-            var email = emailEntry.Text?.Trim() ?? "";
-            var password = passwordEntry.Text?.Trim() ?? "";
-
-            loading.IsVisible = true;
-            var result = await DataBase.Manager.AuthorizeAsync(email, password);
-            loading.IsVisible = false;
+            IsBusy = true;
+            var result = await DataBase.Manager.AuthorizeAsync(Email, Password);
+            IsBusy = false;
             
             if (result != DataBase.ReturnCode.Success)
             {
@@ -63,11 +88,6 @@ namespace NotepadOnlineMobile
             Settings.Storage.Set("token", DataBase.Manager.Token);
 
             Application.Current.MainPage = new MainPage();
-        }
-
-        private async void Register_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new RegisterPage());
         }
     }
 }

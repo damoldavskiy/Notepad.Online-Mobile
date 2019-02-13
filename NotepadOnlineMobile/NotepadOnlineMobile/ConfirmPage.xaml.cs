@@ -6,18 +6,32 @@ namespace NotepadOnlineMobile
 {
     public partial class ConfirmPage : ContentPage
 	{
-		public ConfirmPage()
+        private string code;
+
+        public string Code
+        {
+            get
+            {
+                return code ?? "";
+            }
+            set
+            {
+                code = value?.Trim();
+                OnPropertyChanged("Code");
+            }
+        }
+
+        public ConfirmPage()
 		{
 			InitializeComponent();
+            BindingContext = this;
 		}
 
         private async void Submit_Clicked(object sender, EventArgs e)
         {
-            var code = CodeEntry.Text?.Trim() ?? "";
-
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.ConfirmAsync(code);
-            loading.IsVisible = false;
+            IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)
             {

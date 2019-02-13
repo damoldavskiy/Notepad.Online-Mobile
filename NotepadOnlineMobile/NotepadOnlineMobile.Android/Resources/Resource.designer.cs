@@ -1263,44 +1263,44 @@ namespace NotepadOnlineMobile.Droid
 		public partial class Color
 		{
 			
+			// aapt resource value: 0x7f0e004b
+			public const int abc_background_cache_hint_selector_material_dark = 2131624011;
+			
+			// aapt resource value: 0x7f0e004c
+			public const int abc_background_cache_hint_selector_material_light = 2131624012;
+			
+			// aapt resource value: 0x7f0e004d
+			public const int abc_btn_colored_borderless_text_material = 2131624013;
+			
+			// aapt resource value: 0x7f0e004e
+			public const int abc_btn_colored_text_material = 2131624014;
+			
 			// aapt resource value: 0x7f0e004f
-			public const int abc_background_cache_hint_selector_material_dark = 2131624015;
+			public const int abc_color_highlight_material = 2131624015;
 			
 			// aapt resource value: 0x7f0e0050
-			public const int abc_background_cache_hint_selector_material_light = 2131624016;
+			public const int abc_hint_foreground_material_dark = 2131624016;
 			
 			// aapt resource value: 0x7f0e0051
-			public const int abc_btn_colored_borderless_text_material = 2131624017;
-			
-			// aapt resource value: 0x7f0e0052
-			public const int abc_btn_colored_text_material = 2131624018;
-			
-			// aapt resource value: 0x7f0e0053
-			public const int abc_color_highlight_material = 2131624019;
-			
-			// aapt resource value: 0x7f0e0054
-			public const int abc_hint_foreground_material_dark = 2131624020;
-			
-			// aapt resource value: 0x7f0e0055
-			public const int abc_hint_foreground_material_light = 2131624021;
+			public const int abc_hint_foreground_material_light = 2131624017;
 			
 			// aapt resource value: 0x7f0e0004
 			public const int abc_input_method_navigation_guard = 2131623940;
 			
+			// aapt resource value: 0x7f0e0052
+			public const int abc_primary_text_disable_only_material_dark = 2131624018;
+			
+			// aapt resource value: 0x7f0e0053
+			public const int abc_primary_text_disable_only_material_light = 2131624019;
+			
+			// aapt resource value: 0x7f0e0054
+			public const int abc_primary_text_material_dark = 2131624020;
+			
+			// aapt resource value: 0x7f0e0055
+			public const int abc_primary_text_material_light = 2131624021;
+			
 			// aapt resource value: 0x7f0e0056
-			public const int abc_primary_text_disable_only_material_dark = 2131624022;
-			
-			// aapt resource value: 0x7f0e0057
-			public const int abc_primary_text_disable_only_material_light = 2131624023;
-			
-			// aapt resource value: 0x7f0e0058
-			public const int abc_primary_text_material_dark = 2131624024;
-			
-			// aapt resource value: 0x7f0e0059
-			public const int abc_primary_text_material_light = 2131624025;
-			
-			// aapt resource value: 0x7f0e005a
-			public const int abc_search_url_text = 2131624026;
+			public const int abc_search_url_text = 2131624022;
 			
 			// aapt resource value: 0x7f0e0005
 			public const int abc_search_url_text_normal = 2131623941;
@@ -1311,29 +1311,29 @@ namespace NotepadOnlineMobile.Droid
 			// aapt resource value: 0x7f0e0007
 			public const int abc_search_url_text_selected = 2131623943;
 			
+			// aapt resource value: 0x7f0e0057
+			public const int abc_secondary_text_material_dark = 2131624023;
+			
+			// aapt resource value: 0x7f0e0058
+			public const int abc_secondary_text_material_light = 2131624024;
+			
+			// aapt resource value: 0x7f0e0059
+			public const int abc_tint_btn_checkable = 2131624025;
+			
+			// aapt resource value: 0x7f0e005a
+			public const int abc_tint_default = 2131624026;
+			
 			// aapt resource value: 0x7f0e005b
-			public const int abc_secondary_text_material_dark = 2131624027;
+			public const int abc_tint_edittext = 2131624027;
 			
 			// aapt resource value: 0x7f0e005c
-			public const int abc_secondary_text_material_light = 2131624028;
+			public const int abc_tint_seek_thumb = 2131624028;
 			
 			// aapt resource value: 0x7f0e005d
-			public const int abc_tint_btn_checkable = 2131624029;
+			public const int abc_tint_spinner = 2131624029;
 			
 			// aapt resource value: 0x7f0e005e
-			public const int abc_tint_default = 2131624030;
-			
-			// aapt resource value: 0x7f0e005f
-			public const int abc_tint_edittext = 2131624031;
-			
-			// aapt resource value: 0x7f0e0060
-			public const int abc_tint_seek_thumb = 2131624032;
-			
-			// aapt resource value: 0x7f0e0061
-			public const int abc_tint_spinner = 2131624033;
-			
-			// aapt resource value: 0x7f0e0062
-			public const int abc_tint_switch_track = 2131624034;
+			public const int abc_tint_switch_track = 2131624030;
 			
 			// aapt resource value: 0x7f0e0008
 			public const int accent_material_dark = 2131623944;
@@ -1389,20 +1389,11 @@ namespace NotepadOnlineMobile.Droid
 			// aapt resource value: 0x7f0e0003
 			public const int cardview_shadow_start_color = 2131623939;
 			
-			// aapt resource value: 0x7f0e004e
-			public const int colorAccent = 2131624014;
-			
-			// aapt resource value: 0x7f0e004c
-			public const int colorPrimary = 2131624012;
-			
-			// aapt resource value: 0x7f0e004d
-			public const int colorPrimaryDark = 2131624013;
-			
 			// aapt resource value: 0x7f0e0040
 			public const int design_bottom_navigation_shadow_color = 2131624000;
 			
-			// aapt resource value: 0x7f0e0063
-			public const int design_error = 2131624035;
+			// aapt resource value: 0x7f0e005f
+			public const int design_error = 2131624031;
 			
 			// aapt resource value: 0x7f0e0041
 			public const int design_fab_shadow_end_color = 2131624001;
@@ -1428,8 +1419,8 @@ namespace NotepadOnlineMobile.Droid
 			// aapt resource value: 0x7f0e0048
 			public const int design_snackbar_background_color = 2131624008;
 			
-			// aapt resource value: 0x7f0e0064
-			public const int design_tint_password_toggle = 2131624036;
+			// aapt resource value: 0x7f0e0060
+			public const int design_tint_password_toggle = 2131624032;
 			
 			// aapt resource value: 0x7f0e0016
 			public const int dim_foreground_disabled_material_dark = 2131623958;
@@ -1457,9 +1448,6 @@ namespace NotepadOnlineMobile.Droid
 			
 			// aapt resource value: 0x7f0e001e
 			public const int highlighted_text_material_light = 2131623966;
-			
-			// aapt resource value: 0x7f0e004b
-			public const int launcher_background = 2131624011;
 			
 			// aapt resource value: 0x7f0e001f
 			public const int material_blue_grey_800 = 2131623967;
@@ -1554,11 +1542,11 @@ namespace NotepadOnlineMobile.Droid
 			// aapt resource value: 0x7f0e003a
 			public const int switch_thumb_disabled_material_light = 2131623994;
 			
-			// aapt resource value: 0x7f0e0065
-			public const int switch_thumb_material_dark = 2131624037;
+			// aapt resource value: 0x7f0e0061
+			public const int switch_thumb_material_dark = 2131624033;
 			
-			// aapt resource value: 0x7f0e0066
-			public const int switch_thumb_material_light = 2131624038;
+			// aapt resource value: 0x7f0e0062
+			public const int switch_thumb_material_light = 2131624034;
 			
 			// aapt resource value: 0x7f0e003b
 			public const int switch_thumb_normal_material_dark = 2131623995;
@@ -2928,91 +2916,94 @@ namespace NotepadOnlineMobile.Droid
 			public const int logo = 2130837776;
 			
 			// aapt resource value: 0x7f020111
-			public const int mr_button_connected_dark = 2130837777;
+			public const int menu = 2130837777;
 			
 			// aapt resource value: 0x7f020112
-			public const int mr_button_connected_light = 2130837778;
+			public const int mr_button_connected_dark = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int mr_button_connecting_dark = 2130837779;
+			public const int mr_button_connected_light = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int mr_button_connecting_light = 2130837780;
+			public const int mr_button_connecting_dark = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int mr_button_dark = 2130837781;
+			public const int mr_button_connecting_light = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int mr_button_light = 2130837782;
+			public const int mr_button_dark = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int mr_dialog_close_dark = 2130837783;
+			public const int mr_button_light = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int mr_dialog_close_light = 2130837784;
+			public const int mr_dialog_close_dark = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int mr_dialog_material_background_dark = 2130837785;
+			public const int mr_dialog_close_light = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
-			public const int mr_dialog_material_background_light = 2130837786;
+			public const int mr_dialog_material_background_dark = 2130837786;
 			
 			// aapt resource value: 0x7f02011b
-			public const int mr_group_collapse = 2130837787;
+			public const int mr_dialog_material_background_light = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int mr_group_expand = 2130837788;
+			public const int mr_group_collapse = 2130837788;
 			
 			// aapt resource value: 0x7f02011d
-			public const int mr_media_pause_dark = 2130837789;
+			public const int mr_group_expand = 2130837789;
 			
 			// aapt resource value: 0x7f02011e
-			public const int mr_media_pause_light = 2130837790;
+			public const int mr_media_pause_dark = 2130837790;
 			
 			// aapt resource value: 0x7f02011f
-			public const int mr_media_play_dark = 2130837791;
+			public const int mr_media_pause_light = 2130837791;
 			
 			// aapt resource value: 0x7f020120
-			public const int mr_media_play_light = 2130837792;
+			public const int mr_media_play_dark = 2130837792;
 			
 			// aapt resource value: 0x7f020121
-			public const int mr_media_stop_dark = 2130837793;
+			public const int mr_media_play_light = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int mr_media_stop_light = 2130837794;
+			public const int mr_media_stop_dark = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int mr_vol_type_audiotrack_dark = 2130837795;
+			public const int mr_media_stop_light = 2130837795;
 			
 			// aapt resource value: 0x7f020124
-			public const int mr_vol_type_audiotrack_light = 2130837796;
+			public const int mr_vol_type_audiotrack_dark = 2130837796;
 			
 			// aapt resource value: 0x7f020125
-			public const int navigation_empty_icon = 2130837797;
+			public const int mr_vol_type_audiotrack_light = 2130837797;
 			
 			// aapt resource value: 0x7f020126
-			public const int notification_action_background = 2130837798;
+			public const int navigation_empty_icon = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int notification_bg = 2130837799;
+			public const int notification_action_background = 2130837799;
 			
 			// aapt resource value: 0x7f020128
-			public const int notification_bg_low = 2130837800;
+			public const int notification_bg = 2130837800;
 			
 			// aapt resource value: 0x7f020129
-			public const int notification_bg_low_normal = 2130837801;
+			public const int notification_bg_low = 2130837801;
 			
 			// aapt resource value: 0x7f02012a
-			public const int notification_bg_low_pressed = 2130837802;
+			public const int notification_bg_low_normal = 2130837802;
 			
 			// aapt resource value: 0x7f02012b
-			public const int notification_bg_normal = 2130837803;
+			public const int notification_bg_low_pressed = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int notification_bg_normal_pressed = 2130837804;
+			public const int notification_bg_normal = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int notification_icon_background = 2130837805;
+			public const int notification_bg_normal_pressed = 2130837805;
+			
+			// aapt resource value: 0x7f02012e
+			public const int notification_icon_background = 2130837806;
 			
 			// aapt resource value: 0x7f020137
 			public const int notification_template_icon_bg = 2130837815;
@@ -3020,29 +3011,26 @@ namespace NotepadOnlineMobile.Droid
 			// aapt resource value: 0x7f020138
 			public const int notification_template_icon_low_bg = 2130837816;
 			
-			// aapt resource value: 0x7f02012e
-			public const int notification_tile_bg = 2130837806;
-			
 			// aapt resource value: 0x7f02012f
-			public const int notify_panel_notification_icon_bg = 2130837807;
+			public const int notification_tile_bg = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int plus = 2130837808;
+			public const int notify_panel_notification_icon_bg = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int settings = 2130837809;
+			public const int plus = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int splash_screen = 2130837810;
+			public const int settings = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int tooltip_frame_dark = 2130837811;
+			public const int splash_screen = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int tooltip_frame_light = 2130837812;
+			public const int tooltip_frame_dark = 2130837812;
 			
 			// aapt resource value: 0x7f020135
-			public const int update = 2130837813;
+			public const int tooltip_frame_light = 2130837813;
 			
 			// aapt resource value: 0x7f020136
 			public const int user = 2130837814;

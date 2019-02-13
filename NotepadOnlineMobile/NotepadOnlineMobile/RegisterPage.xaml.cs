@@ -5,28 +5,68 @@ using Xamarin.Forms;
 namespace NotepadOnlineMobile
 {
     public partial class RegisterPage : ContentPage
-	{
-		public RegisterPage()
+    {
+        private string email;
+        private string password;
+        private string confirmPassword;
+
+        public string Email
+        {
+            get
+            {
+                return email ?? "";
+            }
+            set
+            {
+                email = value?.Trim();
+                OnPropertyChanged("Email");
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password ?? "";
+            }
+            set
+            {
+                password = value?.Trim();
+                OnPropertyChanged("Password");
+            }
+        }
+
+        public string ConfirmPassword
+        {
+            get
+            {
+                return confirmPassword ?? "";
+            }
+            set
+            {
+                confirmPassword = value?.Trim();
+                OnPropertyChanged("ConfirmPassword");
+            }
+        }
+
+        public RegisterPage()
 		{
 			InitializeComponent();
+            BindingContext = this;
             NavigationPage.SetHasNavigationBar(this, false);
 		}
 
         private async void Register_Clicked(object sender, EventArgs e)
         {
-            var login = emailEntry.Text?.Trim() ?? "";
-            var password = passwordEntry.Text?.Trim() ?? "";
-            var passwordConfirm = passwordConfirmEntry.Text?.Trim() ?? "";
-
-            if (password != passwordConfirm)
+            if (Password != ConfirmPassword)
             {
                 await DisplayAlert("Error", "You should confirm your password by typing it to the needed box", "OK");
                 return;
             }
 
-            loading.IsVisible = true;
-            var result = await DataBase.Manager.RegisterAsync(login, password);
-            loading.IsVisible = false;
+            IsBusy = true;
+            var result = await DataBase.Manager.RegisterAsync(Email, Password);
+            IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)
             {

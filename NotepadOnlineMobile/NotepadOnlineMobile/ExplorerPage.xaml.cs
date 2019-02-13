@@ -10,85 +10,84 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
-{
-    class DataItem : INotifyPropertyChanged
-    {
-        string name;
-        string description;
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                description = value;
-                OnPropertyChanged("Description");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-    }
-    
+{   
     public partial class ExplorerPage : ContentPage
     {
-        ObservableCollection<DataItem> items;
+        public class DataItem : INotifyPropertyChanged
+        {
+            string name;
+            string description;
+
+            public string Name
+            {
+                get
+                {
+                    return name;
+                }
+                set
+                {
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+
+            public string Description
+            {
+                get
+                {
+                    return description;
+                }
+                set
+                {
+                    description = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            void OnPropertyChanged(string name)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private ObservableCollection<DataItem> items;
+
+        public ObservableCollection<DataItem> Items
+        {
+            get
+            {
+                return items;
+            }
+            set
+            {
+                items = value;
+                OnPropertyChanged("Items");
+            }
+        }
 
         public ExplorerPage()
         {
             InitializeComponent();
+            BindingContext = this;
 
-            var update = new ToolbarItem
-            {
-                Icon = new FileImageSource()
-                {
-                    File = "update.png"
-                }
-            };
-            ToolbarItems.Add(update);
-            update.Clicked += Update_Clicked;
-            
-            menu.ItemSelected += Menu_ItemSelected;
             LoadData();
         }
 
-        private async void LoadData()
+        private async Task LoadData()
         {
-            if (loading.IsVisible)
-                return;
-
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.GetNamesAsync();
-
-            items = new ObservableCollection<DataItem>();
-            menu.ItemsSource = items;
 
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
                 await DisplayAlert("Error", $"An error occurred while observing files: {result.Item1}", "OK");
-                loading.IsVisible = false;
+                IsBusy = false;
                 return;
             }
+
+            Items = new ObservableCollection<DataItem>();
 
             foreach (var name in result.Item2)
             {
@@ -97,27 +96,24 @@ namespace NotepadOnlineMobile
                 if (result.Item1 != DataBase.ReturnCode.Success)
                 {
                     await DisplayAlert("Error", $"An error occurred while downloading file {name}: {result.Item1}", "OK");
-                    loading.IsVisible = false;
+                    IsBusy = false;
                     return;
                 }
 
-                items.Add(new DataItem { Name = name, Description = item.Item2 });
+                Items.Add(new DataItem { Name = name, Description = item.Item2 });
             }
 
-            loading.IsVisible = false;
+            IsBusy = false;
         }
 
         private async Task CreateFileAsync(string name="New file", string desc="Empty file", string text="")
         {
-            if (loading.IsVisible)
-                return;
-            
             for (int i = 0; items.Count(c => c.Name == name + ".txt") > 0; name = "New file " + ++i) ;
             name += ".txt";
 
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.AddDataAsync(name, desc, text);
-            loading.IsVisible = false;
+            IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)
             {
@@ -128,58 +124,90 @@ namespace NotepadOnlineMobile
             items.Add(new DataItem() { Name = name, Description = desc });
         }
 
-        private void Update_Clicked(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
+            if (IsBusy)
+                return;
+
             await CreateFileAsync();
         }
 
-        private async void AddPhoto_Clicked(object sender, EventArgs e)
+        private async void AddItemSpecified_Clicked(object sender, EventArgs e)
         {
-            if (loading.IsVisible)
+            if (IsBusy)
                 return;
 
-            try
-            {
-                if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsPickPhotoSupported)
-                {
-                    MediaFile photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
-                    {
-                        Name = "image",
-                        PhotoSize = PhotoSize.Medium
-                    });
+            var action = await DisplayActionSheet("New file", "Cancel", null, "Empty file", "Pick from gallery", "Take photo");
 
-                    if (photo == null)
-                        return;
+            MediaFile photo = null;
+            var options = new StoreCameraMediaOptions()
+            {
+                Name = "image",
+                PhotoSize = PhotoSize.Medium
+            };
+
+            switch (action)
+            {
+                case "Empty file":
+                    AddItem_Clicked(sender, e);
+                    return;
+                
+                case "Pick from gallery":
+                    if (CrossMedia.Current.IsPickPhotoSupported)
+                        try
+                        {
+                            photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
+                            {
+                                PhotoSize = PhotoSize.Medium
+                            });
+                        }
+                        catch (MediaPermissionException)
+                        {
+                            await DisplayAlert("Error", "No permission to pick photo", "OK");
+                        }
+                    else
+                        await DisplayAlert("Error", "Gallery is not available", "OK");
+                    break;
+                
+                case "Take photo":
+                    if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+                        try
+                        {
+                            photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
+                            {
+                                PhotoSize = PhotoSize.Medium
+                            });
+                        }
+                        catch (MediaPermissionException)
+                        {
+                            await DisplayAlert("Error", "No permission to take photo", "OK");
+                        }
+                    else
+                        await DisplayAlert("Error", "Camera is not available", "OK");
+                    break;
+
+                default:
+                    return;
+            }
+
+            if (photo == null)
+                return;
                     
-                    loading.IsVisible = true;
-                    var text = await CognitiveServices.ComputerVision.OCRAsync(photo.Path);
-                    loading.IsVisible = false;
-
-                    await CreateFileAsync("New file", "Recognized text from photo", text);
-                }
-                else
-                    await DisplayAlert("Error", "Camera is not available", "OK");
-            }
-            catch (Exception ex)
-            {
-                loading.IsVisible = false;
-                await DisplayAlert("Error", $"An error occurred while getting text from image: {ex.Message}", "OK");
-            }
+            IsBusy = true;
+            var text = await CognitiveServices.ComputerVision.OCRAsync(photo.Path);
+            await CreateFileAsync("New file", "Recognized text from photo", text);
+            IsBusy = false;
         }
 
-        private void Menu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void Menu_Refreshing(object sender, EventArgs e)
         {
-            var item = (DataItem)e.SelectedItem;
-            
-            if (item == null)
-                return;
+            ((ListView)sender).IsRefreshing = false;
+            await LoadData();
+        }
 
-            menu.SelectedItem = null;
+        private async void Menu_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var item = (DataItem)e.Item;
 
             var editorPage = new EditorPage(item.Name);
             editorPage.Renamed += (object r_sender, RenameEventArgs r_e) =>
@@ -194,8 +222,8 @@ namespace NotepadOnlineMobile
             {
                 items.Remove(item);
             };
-
-            Navigation.PushAsync(editorPage);
+            
+            await Navigation.PushAsync(editorPage);
         }
     }
 }

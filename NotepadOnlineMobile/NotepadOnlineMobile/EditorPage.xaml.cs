@@ -11,12 +11,12 @@ namespace NotepadOnlineMobile
 {
     public class RenameEventArgs : EventArgs
     {
-        public string Name { get; }
+        public string OldName { get; }
         public string NewName { get; }
         
-        public RenameEventArgs(string name, string newName)
+        public RenameEventArgs(string oldName, string newName)
         {
-            Name = name;
+            OldName = oldName;
             NewName = newName;
         }
     }
@@ -54,8 +54,6 @@ namespace NotepadOnlineMobile
         public delegate void EditEventHandler(object sender, EditEventArgs e);
         public delegate void DeleteEventHandler(object sender, DeleteEventArgs e);
 
-        event EventHandler PageLoaded;
-
         string name;
 
         public EditorPage(string name)
@@ -91,15 +89,14 @@ namespace NotepadOnlineMobile
             ToolbarItems.Add(delete);
             delete.Clicked += Delete_Clicked;
 
-            PageLoaded += EditorPage_PageLoaded;
-            PageLoaded(this, EventArgs.Empty);
+            LoadData();
         }
 
-        private async void EditorPage_PageLoaded(object sender, EventArgs e)
+        private async Task LoadData()
         {
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.GetDataAsync(name);
-            loading.IsVisible = false;
+            IsBusy = false;
 
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
@@ -112,12 +109,12 @@ namespace NotepadOnlineMobile
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.EditTextAsync(name, editor.Text);
 
             if (result != DataBase.ReturnCode.Success)
             {
-                loading.IsVisible = false;
+                IsBusy = false;
                 await DisplayAlert("Error", $"An error occurred while creating new file: {result}", "OK");
                 return;
             }
@@ -141,14 +138,14 @@ namespace NotepadOnlineMobile
             result = await DataBase.Manager.EditDescriptionAsync(name, description);
             if (result != DataBase.ReturnCode.Success)
             {
-                loading.IsVisible = false;
+                IsBusy = false;
                 await DisplayAlert("Error", $"An error occurred while updating file's description: {result}", "OK");
                 return;
             }
 
             Edited?.Invoke(this, new EditEventArgs(name, description));
 
-            loading.IsVisible = false;
+            IsBusy = false;
         }
 
         private void Rename_Clicked(object sender, EventArgs e)
@@ -171,9 +168,9 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.EditNameAsync(name, text);
-            loading.IsVisible = false;
+            IsBusy = false;
 
             if (result == DataBase.ReturnCode.Success)
             {
@@ -196,9 +193,9 @@ namespace NotepadOnlineMobile
                     return;
             }
 
-            loading.IsVisible = true;
+            IsBusy = true;
             var result = await DataBase.Manager.DelDataAsync(name);
-            loading.IsVisible = false;
+            IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)
             {

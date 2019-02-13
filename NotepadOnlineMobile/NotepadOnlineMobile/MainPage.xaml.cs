@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
 {
-    enum MenuItemType
-    {
-        Explorer,
-        Settings,
-        About
-    }
-
-    class MenuItem
-    {
-        public string Title { get; set; }
-        public string Image { get; set; }
-        public MenuItemType Type { get; set; }
-    }
-
     public partial class MainPage : MasterDetailPage
     {
-        public string UserName
+        public enum MenuItemType
+        {
+            Explorer,
+            Settings,
+            About
+        }
+
+        public class MenuItem
+        {
+            public string Title { get; set; }
+            public string Image { get; set; }
+            public MenuItemType Type { get; set; }
+        }
+
+        public string User
         {
             get
             {
@@ -31,35 +28,32 @@ namespace NotepadOnlineMobile
             }
         }
 
+        public ObservableCollection<MenuItem> Items
+        {
+            get
+            {
+                return new ObservableCollection<MenuItem>()
+                {
+                    new MenuItem { Title = "Explorer", Image = "list.png", Type = MenuItemType.Explorer},
+                    new MenuItem { Title = "Settings", Image = "settings.png", Type = MenuItemType.Settings },
+                    new MenuItem { Title = "About", Image = "about.png", Type = MenuItemType.About }
+                };
+            }
+        }
+
         public MainPage()
         {
             InitializeComponent();
-
             BindingContext = this;
-
-            var items = new List<MenuItem>();
-            items.Add(new MenuItem { Title = "Explorer", Image = "list.png", Type = MenuItemType.Explorer});
-            items.Add(new MenuItem { Title = "Settings", Image = "settings.png", Type = MenuItemType.Settings });
-            items.Add(new MenuItem { Title = "About", Image = "about.png", Type = MenuItemType.About });
-
-            menu.ItemsSource = items;
-            menu.ItemSelected += Menu_ItemSelected;
-
             Detail = new NavigationPage(new ExplorerPage());
         }
 
-        private void Menu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             IsPresented = false;
-            var item = (MenuItem)e.SelectedItem;
-
-            if (item == null)
-                return;
-
-            menu.SelectedItem = null;
-
             var currentPage = ((NavigationPage)Detail).CurrentPage;
-            switch (item.Type)
+
+            switch (((MenuItem)e.Item).Type)
             {
                 case MenuItemType.Explorer:
                     if (!(currentPage is ExplorerPage))

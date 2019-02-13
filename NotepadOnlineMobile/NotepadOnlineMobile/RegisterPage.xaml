@@ -8,12 +8,12 @@
         <Grid>
             <StackLayout Margin="30" VerticalOptions="Center">
                 <Label FontSize="30" Margin="0,0,0,10" HorizontalOptions="Center" Text="New account"/>
-                <Entry x:Name="emailEntry" Keyboard="Email" Placeholder="E-mail" Style="{StaticResource LoginEntry}"/>
-                <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password" Style="{StaticResource LoginEntry}"/>
-                <Entry x:Name="passwordConfirmEntry" IsPassword="True" Placeholder="Confirm password" Style="{StaticResource LoginEntry}"/>
+                <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail" Style="{StaticResource LoginEntry}"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password" Style="{StaticResource LoginEntry}"/>
+                <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Confirm password" Style="{StaticResource LoginEntry}"/>
                 <Button Clicked="Register_Clicked" Text="Sign up" Margin="0,10,0,0" Style="{StaticResource LoginButton}"/>
             </StackLayout>
-            <local:LoadingView x:Name="loading" IsVisible="False"/>
+            <local:LoadingView IsVisible="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

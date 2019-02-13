@@ -1,35 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NotepadOnlineMobile.Settings
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AbstractPage : ContentPage
+    public partial class AbstractPage : ContentPage
 	{
-        public ObservableCollection<SettingsItem> Items { get; set; } = new ObservableCollection<SettingsItem>();
+        private ObservableCollection<SettingsItem> items;
+
+        public ObservableCollection<SettingsItem> Items
+        {
+            get
+            {
+                return items;
+            }
+            set
+            {
+                items = value;
+                OnPropertyChanged("Items");
+            }
+        }
 
 		public AbstractPage(string title)
 		{
 			InitializeComponent();
+            BindingContext = this;
 
             Title = title;
-            list.ItemsSource = Items;
+            Items = new ObservableCollection<SettingsItem>();
 		}
 
-        private void ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var item = (SettingsItem)e.SelectedItem;
-            ((ListView)sender).SelectedItem = null;
-            if (item == null)
-                return;
-            
+            var item = (SettingsItem)e.Item;
             item.Action(item);
         }
     }

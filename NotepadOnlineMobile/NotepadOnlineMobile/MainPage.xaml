@@ -7,20 +7,20 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
             <StackLayout>
-                <Grid BackgroundColor="#283593">
+                <Grid HeightRequest="150">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label FontSize="20" Margin="30,0,0,0" Text="Notepad.Online" TextColor="White" FontAttributes="Bold" VerticalOptions="End" Grid.ColumnSpan="2"/>
-                    <Image Source="user.png" WidthRequest="50" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                    <Label FontSize="18" Text="{Binding UserName}" TextColor="White" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+                    <Image Source="menu.png" Aspect="Fill" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                    <Image Source="user.png" Margin="20,0,10,20" WidthRequest="50" VerticalOptions="Center" Grid.Row="1"/>
+                    <Label FontSize="18" Text="{Binding User}" TextColor="{StaticResource TextAccent}" Margin="0,0,0,20" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
-                <ListView x:Name="menu" RowHeight="60" SeparatorVisibility="None">
+                <ListView ItemTapped="ListView_ItemTapped" ItemsSource="{Binding Items}" SelectionMode="None" RowHeight="60" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

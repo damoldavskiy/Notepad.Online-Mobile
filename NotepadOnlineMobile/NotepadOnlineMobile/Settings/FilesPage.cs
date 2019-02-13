@@ -10,6 +10,7 @@
                 Value = (bool)Storage.Get("askdel") ? "Enabled" : "Disabled",
                 ValueVisible = true,
                 SwitcherVisible = true,
+                SwitcherToggled = (bool)Storage.Get("askdel"),
                 Action = (item) =>
                 {
                     if ((bool)Storage.Get("askdel"))

@@ -7,11 +7,11 @@
              Title="Explorer">
     <ContentPage.Content>
         <Grid>
-            <ListView x:Name="menu" SeparatorVisibility="None" RowHeight="100">
+            <ListView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="20" Margin="10,10,10,0" BackgroundColor="{StaticResource BackgroundLight}">
+                            <StackLayout Padding="20" Margin="5" BackgroundColor="{StaticResource BackgroundLight}">
                                 <Label FontSize="20" Text="{Binding Name}" TextColor="{StaticResource TextDark}"/>
                                 <Label FontSize="15" Text="{Binding Description}" TextColor="{StaticResource TextLight}"/>
                             </StackLayout>
@@ -19,8 +19,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <local:AddButton Click="AddItem_Clicked" LongClick="AddPhoto_Clicked" WidthRequest="60" HeightRequest="60" Margin="20" HorizontalOptions="End" VerticalOptions="End"/>
-            <local:LoadingView x:Name="loading" IsVisible="False"/>
+            <local:LongClickableImageButton Clicked="AddItem_Clicked" LongClicked="AddItemSpecified_Clicked" WidthRequest="60" HeightRequest="60" BackgroundColor="{StaticResource Primary}" Source="plus.png" CornerRadius="30" Padding="10" Margin="20" HorizontalOptions="End" VerticalOptions="End"/>
+            <local:LoadingView IsVisible="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

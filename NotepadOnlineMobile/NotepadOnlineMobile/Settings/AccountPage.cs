@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace NotepadOnlineMobile.Settings
 {
@@ -13,7 +8,7 @@ namespace NotepadOnlineMobile.Settings
         {
             Items.Add(new SettingsItem()
             {
-                Header = "Auto-authorization",
+                Header = "Auto-login",
                 Value = (bool)Storage.Get("autoreg") ? "Enabled" : "Disabled",
                 ValueVisible = true,
                 SwitcherVisible = true,
@@ -32,6 +27,17 @@ namespace NotepadOnlineMobile.Settings
                         item.Value = "Enabled";
                         item.SwitcherToggled = true;
                     }
+                }
+            });
+
+            Items.Add(new SettingsItem()
+            {
+                Header = "Change password",
+                Action = (item) =>
+                {
+                    var page = new EditPasswordPage();
+                    page.Title = "Changing password";
+                    Navigation.PushAsync(page);
                 }
             });
 
