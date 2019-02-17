@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NotepadOnlineMobile"
+             x:Class="NotepadOnlineMobile.ConfirmRecoveryPage"
+             BackgroundColor="{StaticResource Background}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Margin="30" VerticalOptions="Center">
+                <Entry Text="{Binding Code}" Keyboard="Numeric" MaxLength="4" Placeholder="Confirm code" Style="{StaticResource LoginEntry}"/>
+                <Button Clicked="Submit_Clicked" Text="Submit" Style="{StaticResource LoginButton}"/>
+            </StackLayout>
+            <local:LoadingView IsVisible="{Binding IsBusy}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,21 +7,21 @@
             Items.Add(new SettingsItem()
             {
                 Header = "Ask before delete",
-                Value = (bool)Storage.Get("askdel") ? "Enabled" : "Disabled",
+                Value = Storage.AskDelete ? "Enabled" : "Disabled",
                 ValueVisible = true,
                 SwitcherVisible = true,
-                SwitcherToggled = (bool)Storage.Get("askdel"),
+                SwitcherToggled = Storage.AskDelete,
                 Action = (item) =>
                 {
-                    if ((bool)Storage.Get("askdel"))
+                    if (Storage.AskDelete)
                     {
-                        Storage.Set("askdel", false);
+                        Storage.AskDelete = false;
                         item.Value = "Disabled";
                         item.SwitcherToggled = false;
                     }
                     else
                     {
-                        Storage.Set("askdel", true);
+                        Storage.AskDelete = true;
                         item.Value = "Enabled";
                         item.SwitcherToggled = true;
                     }
@@ -31,20 +31,20 @@
             Items.Add(new SettingsItem()
             {
                 Header = "Description type",
-                Value = (bool)Storage.Get("keywords") ? "Key words" : "First characters",
+                Value = Storage.UseKeyWords ? "Key words" : "First characters",
                 ValueVisible = true,
                 Action = async (item) =>
                 {
-                    var r = await DisplayActionSheet("Description type", "Cancel", null, "Key words", "First characters");
+                    var result = await DisplayActionSheet("Description type", "Cancel", null, "Key words", "First characters");
 
-                    if (r == "First characters")
+                    if (result == "First characters")
                     {
-                        Storage.Set("keywords", false);
+                        Storage.UseKeyWords = false;
                         item.Value = "First characters";
                     }
                     else
                     {
-                        Storage.Set("keywords", true);
+                        Storage.UseKeyWords = true;
                         item.Value = "Key words";
                     }
                 }

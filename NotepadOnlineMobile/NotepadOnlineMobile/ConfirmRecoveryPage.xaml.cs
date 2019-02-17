@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
 {
-    public partial class ConfirmPage : ContentPage
+    public partial class ConfirmRecoveryPage : ContentPage
 	{
         private string code;
 
@@ -21,7 +21,7 @@ namespace NotepadOnlineMobile
             }
         }
 
-        public ConfirmPage()
+        public ConfirmRecoveryPage()
 		{
 			InitializeComponent();
             BindingContext = this;
@@ -30,7 +30,7 @@ namespace NotepadOnlineMobile
         private async void Submit_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;
-            var result = await DataBase.Manager.ConfirmRegistrationAsync(code);
+            var result = await DataBase.Manager.ConfirmRecoveryAsync(code);
             IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)

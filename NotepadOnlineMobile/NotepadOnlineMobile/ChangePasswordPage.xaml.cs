@@ -4,22 +4,22 @@ using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
 {
-    public partial class EditPasswordPage : ContentPage
+    public partial class ChangePasswordPage : ContentPage
     {
-        private string oldPassword;
+        private string password;
         private string newPassword;
         private string confirmNewPassword;
 
-        public string OldPassword
+        public string Password
         {
             get
             {
-                return oldPassword ?? "";
+                return password ?? "";
             }
             set
             {
-                oldPassword = value.Trim();
-                OnPropertyChanged("OldPassword");
+                password = value.Trim();
+                OnPropertyChanged("password");
             }
         }
 
@@ -49,7 +49,7 @@ namespace NotepadOnlineMobile
             }
         }
 
-        public EditPasswordPage()
+        public ChangePasswordPage()
 		{
 			InitializeComponent();
             BindingContext = this;
@@ -64,8 +64,7 @@ namespace NotepadOnlineMobile
             }
 
             IsBusy = true;
-            //var result = await DataBase.Manager.EditPasswordAsync(DataBase.Manager.Login, OldPassword, newPassword);
-            var result = DataBase.ReturnCode.NoConnection;
+            var result = await DataBase.Manager.ChangePasswordAsync(NewPassword);
             IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)
@@ -74,7 +73,7 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            Settings.Storage.Set("password", NewPassword);
+            Settings.Storage.Password = DataBase.Manager.Password;
 
             await DisplayAlert("Success", "Password changed successfuly", "OK");
         }

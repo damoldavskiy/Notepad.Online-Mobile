@@ -8,7 +8,7 @@ namespace NotepadOnlineMobile
         {
             InitializeComponent();
 
-            var login = new LoginPage();
+            var login = new NavigationPage(new LoginPage());
             var register = new NavigationPage(new RegisterPage());
             login.Title = "Login";
             register.Title = "Register";

@@ -9,6 +9,7 @@ namespace NotepadOnlineMobile
         public App()
         {
             InitializeComponent();
+            Settings.Storage.Initialize();
             MainPage = new LoginRegisterPage();
         }
     }

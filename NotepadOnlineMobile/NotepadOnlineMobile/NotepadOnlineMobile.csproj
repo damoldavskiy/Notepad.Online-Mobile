@@ -10,8 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />
-    <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="3.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.1.1-beta" />
@@ -23,7 +21,7 @@
       <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Debug\CognitiveServices.dll</HintPath>
     </Reference>
     <Reference Include="DataBase">
-      <HintPath>..\..\..\NotepadOnlineConnection\DataBase\bin\Debug\DataBase.dll</HintPath>
+      <HintPath>..\..\..\NotepadOnlineConnection\DataBase\bin\Release\DataBase.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Debug\Newtonsoft.Json.dll</HintPath>
@@ -31,8 +29,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="EditPasswordPage.xaml.cs">
-      <DependentUpon>EditPasswordPage.xaml</DependentUpon>
+    <Compile Update="ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="ConfirmRecoveryPage.xaml.cs">
+      <DependentUpon>ConfirmRecoveryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="RecoveryPage.xaml.cs">
+      <DependentUpon>RecoveryPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

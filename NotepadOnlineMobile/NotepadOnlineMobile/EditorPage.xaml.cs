@@ -54,40 +54,42 @@ namespace NotepadOnlineMobile
         public delegate void EditEventHandler(object sender, EditEventArgs e);
         public delegate void DeleteEventHandler(object sender, DeleteEventArgs e);
 
-        string name;
+        private string name;
+        private string text;
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+            set
+            {
+                text = value;
+                OnPropertyChanged(nameof(Text));
+            }
+        }
 
         public EditorPage(string name)
         {
             InitializeComponent();
+            BindingContext = this;
 
-            this.name = name;
-
-            Title = name;
-
-            var save = new ToolbarItem
-            {
-                Order = ToolbarItemOrder.Secondary,
-                Text = "Save"
-            };
-            ToolbarItems.Add(save);
-            save.Clicked += Save_Clicked;
-
-            var rename = new ToolbarItem
-            {
-                Order = ToolbarItemOrder.Secondary,
-                Text = "Rename"
-            };
-            ToolbarItems.Add(rename);
-            rename.Clicked += Rename_Clicked;
-            input.Submit.Clicked += Rename_Submit_Clicked;
-
-            var delete = new ToolbarItem
-            {
-                Order = ToolbarItemOrder.Secondary,
-                Text = "Delete"
-            };
-            ToolbarItems.Add(delete);
-            delete.Clicked += Delete_Clicked;
+            Name = name;
+            //input.Submit.Clicked += Rename_Submit_Clicked;
 
             LoadData();
         }
@@ -95,7 +97,7 @@ namespace NotepadOnlineMobile
         private async Task LoadData()
         {
             IsBusy = true;
-            var result = await DataBase.Manager.GetDataAsync(name);
+            var result = await DataBase.Manager.GetDataAsync(Name);
             IsBusy = false;
 
             if (result.Item1 != DataBase.ReturnCode.Success)
@@ -104,13 +106,13 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            editor.Text = result.Item3;
+            Text = result.Item3;
         }
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;
-            var result = await DataBase.Manager.EditTextAsync(name, editor.Text);
+            var result = await DataBase.Manager.EditTextAsync(Name, Text);
 
             if (result != DataBase.ReturnCode.Success)
             {
@@ -120,22 +122,21 @@ namespace NotepadOnlineMobile
             }
 
             string description;
-            string text = editor.Text;
-            if ((bool)Settings.Storage.Get("keywords"))
+            if (Settings.Storage.UseKeyWords)
                 try
                 {
-                    var words = await CognitiveServices.TextAnalytics.KeyPhrasesAsync(new[] { text });
+                    var words = await CognitiveServices.TextAnalytics.KeyPhrasesAsync(new[] { Text });
                     description = string.Join("; ", words[0]);
                 }
                 catch (Exception ex)
                 {
                     await DisplayAlert("Error", $"An error occurred while getting key words: {ex.Message}", "OK");
-                    description = text.Length <= 60 ? text : text.Substring(0, 60) + "...";
+                    description = Text.Length <= 60 ? Text : Text.Substring(0, 60) + "...";
                 }
             else
-                description = (text.Length <= 60 ? text : text.Substring(0, 60) + "...").Replace('\n', ' ');
+                description = (Text.Length <= 60 ? Text : Text.Substring(0, 60) + "...").Replace('\n', ' ');
 
-            result = await DataBase.Manager.EditDescriptionAsync(name, description);
+            result = await DataBase.Manager.EditDescriptionAsync(Name, description);
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
@@ -143,40 +144,39 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            Edited?.Invoke(this, new EditEventArgs(name, description));
+            Edited?.Invoke(this, new EditEventArgs(Name, description));
 
             IsBusy = false;
         }
 
         private void Rename_Clicked(object sender, EventArgs e)
         {
-            input.Field.Text = name;
+            input.Text = Name;
             input.IsVisible = true;
         }
 
-        private async void Rename_Submit_Clicked(object sender, EventArgs e)
+        private async void RenameSubmit_Clicked(object sender, EventArgs e)
         {
             input.IsVisible = false;
-            var text = input.Field.Text.Trim();
+            var newname = input.Text.Trim();
 
-            if (text == name)
+            if (newname == Name)
                 return;
 
-            if (!WindowsNamingRules.IsNameCorrect(text))
+            if (!WindowsNamingRules.IsNameCorrect(newname))
             {
                 await DisplayAlert("Error", "The new name contains unacceptable symbols", "OK");
                 return;
             }
 
             IsBusy = true;
-            var result = await DataBase.Manager.EditNameAsync(name, text);
+            var result = await DataBase.Manager.EditNameAsync(Name, newname);
             IsBusy = false;
 
             if (result == DataBase.ReturnCode.Success)
             {
-                Renamed?.Invoke(this, new RenameEventArgs(name, text));
-                name = text;
-                Title = name;
+                Renamed?.Invoke(this, new RenameEventArgs(Name, newname));
+                Name = newname;
             }
             else
             {
@@ -186,15 +186,15 @@ namespace NotepadOnlineMobile
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-            if ((bool)Settings.Storage.Get("askdel"))
+            if (Settings.Storage.AskDelete)
             {
-                var ans = await DisplayActionSheet($"Do you really want to delete {name}?", null, null, "Yes", "Cancel");
+                var ans = await DisplayActionSheet($"Do you really want to delete {Name}?", null, null, "Yes", "Cancel");
                 if (ans == "Cancel")
                     return;
             }
 
             IsBusy = true;
-            var result = await DataBase.Manager.DelDataAsync(name);
+            var result = await DataBase.Manager.DelDataAsync(Name);
             IsBusy = false;
 
             if (result != DataBase.ReturnCode.Success)
@@ -203,7 +203,7 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            Deleted?.Invoke(this, new DeleteEventArgs(name));
+            Deleted?.Invoke(this, new DeleteEventArgs(Name));
             await Navigation.PopAsync();
         }
     }

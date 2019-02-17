@@ -38,27 +38,24 @@ namespace NotepadOnlineMobile
         public LoginPage()
 		{
 			InitializeComponent();
-            InitializeLogic();
             BindingContext = this;
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            Login();
         }
 
-        private async void InitializeLogic()
+        private async void Login()
         {
-            Settings.Storage.Load();
-            var login = Settings.Storage.Get("login").ToString();
-            var password = Settings.Storage.Get("password").ToString();
-            var token = Settings.Storage.Get("token").ToString();
-
-            if (login != "")
+            if (Settings.Storage.Email != "")
             {
-                Email = login;
-                Password = password;
+                Email = Settings.Storage.Email;
+                Password = Settings.Storage.Password;
 
-                if (!(bool)Settings.Storage.Get("autoreg"))
+                if (!Settings.Storage.AutoLogin)
                     return;
 
                 IsBusy = true;
-                var result = await DataBase.Manager.AuthorizeAsync(login, password, token);
+                var result = await DataBase.Manager.LoginAsync(Settings.Storage.Email, Settings.Storage.Password, Settings.Storage.Token);
                 IsBusy = false;
 
                 if (result != DataBase.ReturnCode.Success)
@@ -74,7 +71,7 @@ namespace NotepadOnlineMobile
         private async void Signin_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;
-            var result = await DataBase.Manager.AuthorizeAsync(Email, Password);
+            var result = await DataBase.Manager.LoginAsync(Email, Password);
             IsBusy = false;
             
             if (result != DataBase.ReturnCode.Success)
@@ -83,11 +80,16 @@ namespace NotepadOnlineMobile
                 return;
             }
             
-            Settings.Storage.Set("login", DataBase.Manager.Login);
-            Settings.Storage.Set("password", DataBase.Manager.Password);
-            Settings.Storage.Set("token", DataBase.Manager.Token);
-
+            Settings.Storage.Email = DataBase.Manager.Email;
+            Settings.Storage.Password = DataBase.Manager.Password;
+            Settings.Storage.Token = DataBase.Manager.Token;
+            
             Application.Current.MainPage = new MainPage();
+        }
+
+        private async void Forgot_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new RecoveryPage());
         }
     }
 }

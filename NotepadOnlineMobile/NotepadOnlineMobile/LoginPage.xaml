@@ -11,8 +11,13 @@
                 <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail" Style="{StaticResource LoginEntry}"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password" Style="{StaticResource LoginEntry}"/>
                 <Button Clicked="Signin_Clicked" Text="Sign in" Margin="0,10,0,0" Style="{StaticResource LoginButton}"/>
+                <Label FontSize="18" Margin="0,10,0,0" Text="Forgot password?" HorizontalOptions="Center" TextColor="{StaticResource TextLight}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Forgot_Clicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
-            <local:LoadingView IsVisible="{Binding IsBusy}"/>
+            <local:LoadingView x:Name="loading" IsVisible="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

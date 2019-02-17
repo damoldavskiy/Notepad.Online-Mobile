@@ -9,21 +9,21 @@ namespace NotepadOnlineMobile.Settings
             Items.Add(new SettingsItem()
             {
                 Header = "Auto-login",
-                Value = (bool)Storage.Get("autoreg") ? "Enabled" : "Disabled",
+                Value = Storage.AutoLogin ? "Enabled" : "Disabled",
                 ValueVisible = true,
                 SwitcherVisible = true,
-                SwitcherToggled = (bool)Storage.Get("autoreg"),
+                SwitcherToggled = Storage.AutoLogin,
                 Action = (item) =>
                 {
-                    if ((bool)Storage.Get("autoreg"))
+                    if (Storage.AutoLogin)
                     {
-                        Storage.Set("autoreg", false);
+                        Storage.AutoLogin = false;
                         item.Value = "Disabled";
                         item.SwitcherToggled = false;
                     }
                     else
                     {
-                        Storage.Set("autoreg", true);
+                        Storage.AutoLogin = true;
                         item.Value = "Enabled";
                         item.SwitcherToggled = true;
                     }
@@ -35,7 +35,7 @@ namespace NotepadOnlineMobile.Settings
                 Header = "Change password",
                 Action = (item) =>
                 {
-                    var page = new EditPasswordPage();
+                    var page = new ChangePasswordPage();
                     page.Title = "Changing password";
                     Navigation.PushAsync(page);
                 }
@@ -46,9 +46,9 @@ namespace NotepadOnlineMobile.Settings
                 Header = "Log out",
                 Action = (item) =>
                 {
-                    Storage.Set("login", "");
-                    Storage.Set("password", "");
-                    Storage.Set("token", "");
+                    Storage.Email = "";
+                    Storage.Password = "";
+                    Storage.Token = "";
                     Application.Current.MainPage = new LoginRegisterPage();
                 }
             });

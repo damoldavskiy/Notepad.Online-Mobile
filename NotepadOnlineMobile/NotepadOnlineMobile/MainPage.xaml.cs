@@ -24,7 +24,7 @@ namespace NotepadOnlineMobile
         {
             get
             {
-                return DataBase.Manager.Login;
+                return DataBase.Manager.Email;
             }
         }
 

@@ -2,11 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NotepadOnlineMobile"
-             x:Class="NotepadOnlineMobile.EditorPage">
+             x:Class="NotepadOnlineMobile.EditorPage"
+             Title="{Binding Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary" Text="Save" Clicked="Save_Clicked"/>
+        <ToolbarItem Order="Secondary" Text="Rename" Clicked="Rename_Clicked"/>
+        <ToolbarItem Order="Secondary" Text="Delete" Clicked="Delete_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
-            <Editor x:Name="editor"/>
-            <local:InputView x:Name="input" IsVisible="False"/>
+            <Editor Text="{Binding Text}"/>
+            <local:InputView x:Name="input" SubmitClicked="RenameSubmit_Clicked"/>
             <local:LoadingView IsVisible="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
