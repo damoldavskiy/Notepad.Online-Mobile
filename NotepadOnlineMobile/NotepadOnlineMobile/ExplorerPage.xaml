@@ -7,7 +7,7 @@
              Title="Explorer">
     <ContentPage.Content>
         <Grid>
-            <ListView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}">
+            <local:RefreshableListView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -18,9 +18,9 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </local:RefreshableListView>
             <local:LongClickableImageButton Clicked="AddItem_Clicked" LongClicked="AddItemSpecified_Clicked" WidthRequest="60" HeightRequest="60" BackgroundColor="{StaticResource Primary}" Source="plus.png" CornerRadius="30" Padding="10" Margin="20" HorizontalOptions="End" VerticalOptions="End"/>
-            <local:LoadingView IsVisible="{Binding IsBusy}"/>
+            <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

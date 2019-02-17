@@ -13,7 +13,7 @@
                 <Entry Text="{Binding ConfirmNewPassword}" IsPassword="True" Placeholder="Confirm new password" Style="{StaticResource LoginEntry}"/>
                 <Button Clicked="Button_Clicked" Text="Recovery" Margin="0,10,0,0" Style="{StaticResource LoginButton}"/>
             </StackLayout>
-            <local:LoadingView IsVisible="{Binding IsBusy}"/>
+            <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

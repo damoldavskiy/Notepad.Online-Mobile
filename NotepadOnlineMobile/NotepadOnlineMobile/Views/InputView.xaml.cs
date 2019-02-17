@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -28,6 +29,19 @@ namespace NotepadOnlineMobile
 			InitializeComponent();
             BindingContext = this;
             IsVisible = false;
+            Opacity = 0;
+        }
+
+        public async Task Show()
+        {
+            IsVisible = true;
+            await this.FadeTo(1);
+        }
+
+        public async Task Hide()
+        {
+            await this.FadeTo(0);
+            IsVisible = false;
         }
 
         private void Submit_Clicked(object sender, EventArgs e)
@@ -35,9 +49,9 @@ namespace NotepadOnlineMobile
             SubmitClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void Cancel_Clicked(object sender, EventArgs e)
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            IsVisible = false;
+            await Hide();
             Text = "";
         }
     }

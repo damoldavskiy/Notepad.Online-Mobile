@@ -43,7 +43,6 @@ namespace NotepadOnlineMobile
         }
     }
 
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditorPage : ContentPage
     {
         public event RenameEventHandler Renamed;
@@ -89,7 +88,6 @@ namespace NotepadOnlineMobile
             BindingContext = this;
 
             Name = name;
-            //input.Submit.Clicked += Rename_Submit_Clicked;
 
             LoadData();
         }
@@ -111,7 +109,10 @@ namespace NotepadOnlineMobile
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
+            if (IsBusy || input.IsVisible)
+                return;
             IsBusy = true;
+
             var result = await DataBase.Manager.EditTextAsync(Name, Text);
 
             if (result != DataBase.ReturnCode.Success)
@@ -122,11 +123,16 @@ namespace NotepadOnlineMobile
             }
 
             string description;
-            if (Settings.Storage.UseKeyWords)
+            if (string.IsNullOrWhiteSpace(Text))
+                description = "Empty file";
+            else if (Settings.Storage.UseKeyWords)
                 try
                 {
                     var words = await CognitiveServices.TextAnalytics.KeyPhrasesAsync(new[] { Text });
-                    description = string.Join("; ", words[0]);
+                    if (words.Length > 0)
+                        description = string.Join("; ", words[0]);
+                    else
+                        description = "No key words";
                 }
                 catch (Exception ex)
                 {
@@ -149,15 +155,18 @@ namespace NotepadOnlineMobile
             IsBusy = false;
         }
 
-        private void Rename_Clicked(object sender, EventArgs e)
+        private async void Rename_Clicked(object sender, EventArgs e)
         {
+            if (IsBusy || input.IsVisible)
+                return;
+
             input.Text = Name;
-            input.IsVisible = true;
+            await input.Show();
         }
 
         private async void RenameSubmit_Clicked(object sender, EventArgs e)
         {
-            input.IsVisible = false;
+            input.Hide();
             var newname = input.Text.Trim();
 
             if (newname == Name)
@@ -186,6 +195,9 @@ namespace NotepadOnlineMobile
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
+            if (IsBusy || input.IsVisible)
+                return;
+
             if (Settings.Storage.AskDelete)
             {
                 var ans = await DisplayActionSheet($"Do you really want to delete {Name}?", null, null, "Yes", "Cancel");

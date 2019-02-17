@@ -106,10 +106,9 @@ namespace NotepadOnlineMobile
             IsBusy = false;
         }
 
-        private async Task CreateFileAsync(string name="New file", string desc="Empty file", string text="")
+        private async Task CreateFileAsync(string name="New file", string desc="New empty file", string text="")
         {
-            for (int i = 0; items.Count(c => c.Name == name + ".txt") > 0; name = "New file " + ++i) ;
-            name += ".txt";
+            for (int i = 0; items.Count(c => c.Name == name) > 0; name = "New file " + ++i) ;
 
             IsBusy = true;
             var result = await DataBase.Manager.AddDataAsync(name, desc, text);

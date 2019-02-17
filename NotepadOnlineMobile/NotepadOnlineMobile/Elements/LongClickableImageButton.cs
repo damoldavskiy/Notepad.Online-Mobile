@@ -8,7 +8,7 @@ namespace NotepadOnlineMobile
 	{
         public event EventHandler LongClicked;
 
-        public LongClickableImageButton ()
+        public LongClickableImageButton()
 		{ }
 
         public void OnLongClicked(object s, EventArgs e)

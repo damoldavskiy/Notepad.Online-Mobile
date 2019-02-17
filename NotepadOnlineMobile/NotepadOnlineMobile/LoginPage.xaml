@@ -17,7 +17,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-            <local:LoadingView x:Name="loading" IsVisible="{Binding IsBusy}"/>
+            <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

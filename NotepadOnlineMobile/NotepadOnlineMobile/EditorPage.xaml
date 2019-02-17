@@ -13,7 +13,7 @@
         <Grid>
             <Editor Text="{Binding Text}"/>
             <local:InputView x:Name="input" SubmitClicked="RenameSubmit_Clicked"/>
-            <local:LoadingView IsVisible="{Binding IsBusy}"/>
+            <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

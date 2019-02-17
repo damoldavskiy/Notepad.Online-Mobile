@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NotepadOnlineMobile
+﻿namespace NotepadOnlineMobile
 {
     public static class WindowsNamingRules
     {

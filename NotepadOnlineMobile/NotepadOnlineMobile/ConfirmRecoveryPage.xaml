@@ -10,7 +10,7 @@
                 <Entry Text="{Binding Code}" Keyboard="Numeric" MaxLength="4" Placeholder="Confirm code" Style="{StaticResource LoginEntry}"/>
                 <Button Clicked="Submit_Clicked" Text="Submit" Style="{StaticResource LoginButton}"/>
             </StackLayout>
-            <local:LoadingView IsVisible="{Binding IsBusy}"/>
+            <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
