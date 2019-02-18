@@ -34,6 +34,12 @@ namespace NotepadOnlineMobile.Settings
             set { Set("AskDelete", value); }
         }
 
+        public static bool Preload
+        {
+            get { return (bool)Get("Preload"); }
+            set { Set("Preload", value); }
+        }
+
         public static bool UseKeyWords
         {
             get { return (bool)Get("UseKeyWords"); }
@@ -42,7 +48,12 @@ namespace NotepadOnlineMobile.Settings
 
         public static void Initialize()
         {
-            if (Application.Current.Properties.ContainsKey("Email"))
+            var initialized = true;
+            foreach (var key in new[] { "Email", "Password", "Token", "AutoLogin", "AskDelete", "Preload", "UseKeyWords" })
+                if (!Application.Current.Properties.ContainsKey(key))
+                    initialized = false;
+
+            if (initialized)
                 return;
 
             Email = "";
@@ -51,6 +62,7 @@ namespace NotepadOnlineMobile.Settings
             AutoLogin = true;
             AskDelete = false;
             UseKeyWords = true;
+            Preload = true;
         }
 
         static object Get(string property)

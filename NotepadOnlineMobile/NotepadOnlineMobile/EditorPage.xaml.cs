@@ -25,11 +25,13 @@ namespace NotepadOnlineMobile
     {
         public string Name { get; }
         public string NewDescription { get; }
+        public string NewText { get; }
 
-        public EditEventArgs(string name, string newDescription)
+        public EditEventArgs(string name, string newDescription, string newText)
         {
             Name = name;
             NewDescription = newDescription;
+            NewText = newText;
         }
     }
 
@@ -89,10 +91,19 @@ namespace NotepadOnlineMobile
 
             Name = name;
 
-            LoadData();
+            Load();
         }
 
-        private async Task LoadData()
+        public EditorPage(string name, string text)
+        {
+            InitializeComponent();
+            BindingContext = this;
+
+            Name = name;
+            Text = text;
+        }
+
+        private async Task Load()
         {
             IsBusy = true;
             var result = await DataBase.Manager.GetDataAsync(Name);
@@ -100,7 +111,7 @@ namespace NotepadOnlineMobile
 
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while opening file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while opening file: {result.Item1}", "OK");
                 return;
             }
 
@@ -137,10 +148,10 @@ namespace NotepadOnlineMobile
                 catch (Exception ex)
                 {
                     await DisplayAlert("Error", $"An error occurred while getting key words: {ex.Message}", "OK");
-                    description = Text.Length <= 60 ? Text : Text.Substring(0, 60) + "...";
+                    description = Text;
                 }
             else
-                description = (Text.Length <= 60 ? Text : Text.Substring(0, 60) + "...").Replace('\n', ' ');
+                description = Text;
 
             result = await DataBase.Manager.EditDescriptionAsync(Name, description);
             if (result != DataBase.ReturnCode.Success)
@@ -150,7 +161,7 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            Edited?.Invoke(this, new EditEventArgs(Name, description));
+            Edited?.Invoke(this, new EditEventArgs(Name, description, Text));
 
             IsBusy = false;
         }

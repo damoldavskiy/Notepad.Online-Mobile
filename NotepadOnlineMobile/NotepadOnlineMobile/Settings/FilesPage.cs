@@ -30,6 +30,30 @@
 
             Items.Add(new SettingsItem()
             {
+                Header = "Preload files",
+                Value = Storage.Preload ? "Files load on start" : "Files load on tap",
+                ValueVisible = true,
+                SwitcherVisible = true,
+                SwitcherToggled = Storage.Preload,
+                Action = (item) =>
+                {
+                    if (Storage.Preload)
+                    {
+                        Storage.Preload = false;
+                        item.Value = "Files load on tap";
+                        item.SwitcherToggled = false;
+                    }
+                    else
+                    {
+                        Storage.Preload = true;
+                        item.Value = "Files load on start";
+                        item.SwitcherToggled = true;
+                    }
+                }
+            });
+
+            Items.Add(new SettingsItem()
+            {
                 Header = "Description type",
                 Value = Storage.UseKeyWords ? "Key words" : "First characters",
                 ValueVisible = true,

@@ -17,6 +17,7 @@ namespace NotepadOnlineMobile
         {
             string name;
             string description;
+            string text;
 
             public string Name
             {
@@ -39,8 +40,21 @@ namespace NotepadOnlineMobile
                 }
                 set
                 {
-                    description = value;
+                    description = (value.Length <= 60 ? value : value.Substring(0, 60) + "...").Replace('\n', ' ');
                     OnPropertyChanged("Description");
+                }
+            }
+
+            public string Text
+            {
+                get
+                {
+                    return text;
+                }
+                set
+                {
+                    text = value;
+                    OnPropertyChanged("Text");
                 }
             }
 
@@ -72,10 +86,10 @@ namespace NotepadOnlineMobile
             InitializeComponent();
             BindingContext = this;
 
-            LoadData();
+            Load();
         }
 
-        private async Task LoadData()
+        private async Task Load()
         {
             IsBusy = true;
             var result = await DataBase.Manager.GetNamesAsync();
@@ -100,7 +114,7 @@ namespace NotepadOnlineMobile
                     return;
                 }
 
-                Items.Add(new DataItem { Name = name, Description = item.Item2 });
+                Items.Add(new DataItem { Name = name, Description = item.Item2, Text = Settings.Storage.Preload ? item.Item3 : null });
             }
 
             IsBusy = false;
@@ -201,14 +215,19 @@ namespace NotepadOnlineMobile
         private async void Menu_Refreshing(object sender, EventArgs e)
         {
             ((ListView)sender).IsRefreshing = false;
-            await LoadData();
+            await Load();
         }
 
         private async void Menu_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var item = (DataItem)e.Item;
 
-            var editorPage = new EditorPage(item.Name);
+            EditorPage editorPage;
+            if (Settings.Storage.Preload)
+                editorPage = new EditorPage(item.Name, item.Text);
+            else
+                editorPage = new EditorPage(item.Name);
+
             editorPage.Renamed += (object r_sender, RenameEventArgs r_e) =>
             {
                 item.Name = r_e.NewName;
@@ -216,6 +235,8 @@ namespace NotepadOnlineMobile
             editorPage.Edited += (object e_sender, EditEventArgs e_e) =>
             {
                 item.Description = e_e.NewDescription;
+                if (Settings.Storage.Preload)
+                    item.Text = e_e.NewText;
             };
             editorPage.Deleted += (object d_sender, DeleteEventArgs d_e) =>
             {

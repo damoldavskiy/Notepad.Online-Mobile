@@ -41,10 +41,10 @@ namespace NotepadOnlineMobile
             BindingContext = this;
             NavigationPage.SetHasNavigationBar(this, false);
 
-            Login();
+            Load();
         }
 
-        private async void Login()
+        private async void Load()
         {
             if (Settings.Storage.Email != "")
             {
