@@ -46,10 +46,16 @@ namespace NotepadOnlineMobile.Settings
             set { Set("UseKeyWords", value); }
         }
 
+        public static int FontSize
+        {
+            get { return (int)Get("FontSize"); }
+            set { Set("FontSize", value); }
+        }
+
         public static void Initialize()
         {
             var initialized = true;
-            foreach (var key in new[] { "Email", "Password", "Token", "AutoLogin", "AskDelete", "Preload", "UseKeyWords" })
+            foreach (var key in new[] { "Email", "Password", "Token", "AutoLogin", "AskDelete", "Preload", "UseKeyWords", "FontSize" })
                 if (!Application.Current.Properties.ContainsKey(key))
                     initialized = false;
 
@@ -63,6 +69,7 @@ namespace NotepadOnlineMobile.Settings
             AskDelete = false;
             UseKeyWords = true;
             Preload = true;
+            FontSize = 18;
         }
 
         static object Get(string property)

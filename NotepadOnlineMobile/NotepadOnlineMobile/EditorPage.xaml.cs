@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NotepadOnlineMobile
 {
@@ -84,11 +80,19 @@ namespace NotepadOnlineMobile
             }
         }
 
+        public int FontSize
+        {
+            get
+            {
+                return Settings.Storage.FontSize;
+            }
+        }
+
         public EditorPage(string name)
         {
             InitializeComponent();
             BindingContext = this;
-
+            
             Name = name;
 
             Load();

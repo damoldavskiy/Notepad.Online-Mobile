@@ -92,30 +92,42 @@ namespace NotepadOnlineMobile
         private async Task Load()
         {
             IsBusy = true;
-            var result = await DataBase.Manager.GetNamesAsync();
+            string[] names, descriptions, text = new string[0];
 
+            var result = await DataBase.Manager.GetNamesAsync();
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
                 await DisplayAlert("Error", $"An error occurred while observing files: {result.Item1}", "OK");
                 IsBusy = false;
                 return;
             }
+            names = result.Item2;
 
-            Items = new ObservableCollection<DataItem>();
-
-            foreach (var name in result.Item2)
+            result = await DataBase.Manager.GetDescriptionsAsync();
+            if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                var item = await DataBase.Manager.GetDataAsync(name);
-
+                await DisplayAlert("Error", $"An error occurred while observing descriptions: {result.Item1}", "OK");
+                IsBusy = false;
+                return;
+            }
+            descriptions = result.Item2;
+            
+            if (Settings.Storage.Preload)
+            {
+                result = await DataBase.Manager.GetTextAsync();
                 if (result.Item1 != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred while downloading file {name}: {result.Item1}", "OK");
+                    await DisplayAlert("Error", $"An error occurred while observing data: {result.Item1}", "OK");
                     IsBusy = false;
                     return;
                 }
-
-                Items.Add(new DataItem { Name = name, Description = item.Item2, Text = Settings.Storage.Preload ? item.Item3 : null });
+                text = result.Item2;
             }
+
+            Items = new ObservableCollection<DataItem>();
+
+            for (int i = 0; i < names.Length; i++)
+                Items.Add(new DataItem { Name = names[i], Description = descriptions[i], Text = Settings.Storage.Preload ? text[i] : null });
 
             IsBusy = false;
         }
@@ -134,7 +146,7 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            items.Add(new DataItem() { Name = name, Description = desc });
+            items.Add(new DataItem() { Name = name, Description = desc, Text = Settings.Storage.Preload ? text : null });
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)

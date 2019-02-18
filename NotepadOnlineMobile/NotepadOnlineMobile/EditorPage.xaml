@@ -11,7 +11,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
-            <Editor Text="{Binding Text}"/>
+            <Editor Text="{Binding Text}" FontSize="{Binding FontSize}"/>
             <local:InputView x:Name="input" SubmitClicked="RenameSubmit_Clicked"/>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
