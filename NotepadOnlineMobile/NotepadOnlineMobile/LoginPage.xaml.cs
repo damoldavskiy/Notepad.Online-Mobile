@@ -55,7 +55,7 @@ namespace NotepadOnlineMobile
                     return;
 
                 IsBusy = true;
-                var result = await DataBase.Manager.LoginAsync(Settings.Storage.Email, Settings.Storage.Password, Settings.Storage.Token);
+                var result = await DataBase.Manager.LoginAsync(Email, Password, Settings.Storage.Token);
                 IsBusy = false;
 
                 if (result != DataBase.ReturnCode.Success)
@@ -79,10 +79,6 @@ namespace NotepadOnlineMobile
                 await DisplayAlert("Error", $"An error occurred during login: {result}", "OK");
                 return;
             }
-            
-            Settings.Storage.Email = DataBase.Manager.Email;
-            Settings.Storage.Password = DataBase.Manager.Password;
-            Settings.Storage.Token = DataBase.Manager.Token;
             
             Application.Current.MainPage = new MainPage();
         }

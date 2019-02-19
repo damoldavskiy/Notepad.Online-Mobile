@@ -6,57 +6,58 @@ namespace NotepadOnlineMobile.Settings
     {
         public static string Email
         {
-            get { return Get("Email").ToString(); }
-            set { Set("Email", value); }
+            get { return Get(nameof(Email)).ToString(); }
+            set { Set(nameof(Email), value); }
         }
 
         public static string Password
         {
-            get { return Get("Password").ToString(); }
-            set { Set("Password", value); }
+            get { return Get(nameof(Password)).ToString(); }
+            set { Set(nameof(Password), value); }
         }
 
         public static string Token
         {
-            get { return Get("Token").ToString(); }
-            set { Set("Token", value); }
+            get { return Get(nameof(Token)).ToString(); }
+            set { Set(nameof(Token), value); }
         }
 
         public static bool AutoLogin
         {
-            get { return (bool)Get("AutoLogin"); }
-            set { Set("AutoLogin", value); }
+            get { return (bool)Get(nameof(AutoLogin)); }
+            set { Set(nameof(AutoLogin), value); }
         }
 
         public static bool AskDelete
         {
-            get { return (bool)Get("AskDelete"); }
-            set { Set("AskDelete", value); }
+            get { return (bool)Get(nameof(AskDelete)); }
+            set { Set(nameof(AskDelete), value); }
         }
 
         public static bool Preload
         {
-            get { return (bool)Get("Preload"); }
-            set { Set("Preload", value); }
+            get { return (bool)Get(nameof(Preload)); }
+            set { Set(nameof(Preload), value); }
         }
 
         public static bool UseKeyWords
         {
-            get { return (bool)Get("UseKeyWords"); }
-            set { Set("UseKeyWords", value); }
+            get { return (bool)Get(nameof(UseKeyWords)); }
+            set { Set(nameof(UseKeyWords), value); }
         }
 
         public static int FontSize
         {
-            get { return (int)Get("FontSize"); }
-            set { Set("FontSize", value); }
+            get { return (int)Get(nameof(FontSize)); }
+            set { Set(nameof(FontSize), value); }
         }
 
         public static void Initialize()
         {
             var initialized = true;
-            foreach (var key in new[] { "Email", "Password", "Token", "AutoLogin", "AskDelete", "Preload", "UseKeyWords", "FontSize" })
-                if (!Application.Current.Properties.ContainsKey(key))
+
+            foreach (var property in typeof(Storage).GetProperties())
+                if (!App.Current.Properties.ContainsKey(property.Name))
                     initialized = false;
 
             if (initialized)
@@ -74,12 +75,12 @@ namespace NotepadOnlineMobile.Settings
 
         static object Get(string property)
         {
-            return Application.Current.Properties[property];
+            return App.Current.Properties[property];
         }
 
         static void Set(string property, object value)
         {
-            Application.Current.Properties[property] = value;
+            App.Current.Properties[property] = value;
         }
     }
 }

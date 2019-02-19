@@ -12,5 +12,12 @@ namespace NotepadOnlineMobile
             Settings.Storage.Initialize();
             MainPage = new LoginRegisterPage();
         }
+
+        protected override void OnSleep()
+        {
+            Settings.Storage.Email = DataBase.Manager.Email;
+            Settings.Storage.Password = DataBase.Manager.Password;
+            Settings.Storage.Token = DataBase.Manager.Token;
+        }
     }
 }
