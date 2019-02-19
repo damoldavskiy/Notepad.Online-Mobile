@@ -6,9 +6,9 @@ namespace NotepadOnlineMobile
 {
     public partial class RecoveryPage : ContentPage
     {
-        private string email;
-        private string newPassword;
-        private string confirmNewPassword;
+        string email;
+        string newPassword;
+        string confirmNewPassword;
 
         public string Email
         {
@@ -19,7 +19,7 @@ namespace NotepadOnlineMobile
             set
             {
                 email = value?.Trim();
-                OnPropertyChanged("Email");
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -32,7 +32,7 @@ namespace NotepadOnlineMobile
             set
             {
                 newPassword = value?.Trim();
-                OnPropertyChanged("NewPassword");
+                OnPropertyChanged(nameof(NewPassword));
             }
         }
 
@@ -45,7 +45,7 @@ namespace NotepadOnlineMobile
             set
             {
                 confirmNewPassword = value?.Trim();
-                OnPropertyChanged("ConfirmNewPassword");
+                OnPropertyChanged(nameof(ConfirmNewPassword));
             }
         }
 
@@ -55,7 +55,7 @@ namespace NotepadOnlineMobile
             BindingContext = this;
 		}
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        async void Button_Clicked(object sender, EventArgs e)
         {
             if (NewPassword != ConfirmNewPassword)
             {

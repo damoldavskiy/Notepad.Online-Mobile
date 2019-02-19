@@ -6,9 +6,9 @@ namespace NotepadOnlineMobile
 {
     public partial class RegisterPage : ContentPage
     {
-        private string email;
-        private string password;
-        private string confirmPassword;
+        string email;
+        string password;
+        string confirmPassword;
 
         public string Email
         {
@@ -19,7 +19,7 @@ namespace NotepadOnlineMobile
             set
             {
                 email = value?.Trim();
-                OnPropertyChanged("Email");
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -32,7 +32,7 @@ namespace NotepadOnlineMobile
             set
             {
                 password = value?.Trim();
-                OnPropertyChanged("Password");
+                OnPropertyChanged(nameof(Password));
             }
         }
 
@@ -45,7 +45,7 @@ namespace NotepadOnlineMobile
             set
             {
                 confirmPassword = value?.Trim();
-                OnPropertyChanged("ConfirmPassword");
+                OnPropertyChanged(nameof(ConfirmPassword));
             }
         }
 
@@ -56,7 +56,7 @@ namespace NotepadOnlineMobile
             NavigationPage.SetHasNavigationBar(this, false);
 		}
 
-        private async void Register_Clicked(object sender, EventArgs e)
+        async void Register_Clicked(object sender, EventArgs e)
         {
             if (Password != ConfirmPassword)
             {

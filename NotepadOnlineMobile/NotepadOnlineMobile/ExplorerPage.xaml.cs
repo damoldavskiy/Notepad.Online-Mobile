@@ -66,7 +66,7 @@ namespace NotepadOnlineMobile
             }
         }
 
-        private ObservableCollection<DataItem> items;
+        ObservableCollection<DataItem> items;
 
         public ObservableCollection<DataItem> Items
         {
@@ -89,7 +89,7 @@ namespace NotepadOnlineMobile
             Load();
         }
 
-        private async Task Load()
+        async Task Load()
         {
             IsBusy = true;
             string[] names, descriptions, text = new string[0];
@@ -132,7 +132,7 @@ namespace NotepadOnlineMobile
             IsBusy = false;
         }
 
-        private async Task CreateFileAsync(string name="New file", string desc="New empty file", string text="")
+        async Task CreateFileAsync(string name="New file", string desc="New empty file", string text="")
         {
             for (int i = 0; items.Count(c => c.Name == name) > 0; name = "New file " + ++i) ;
 
@@ -149,7 +149,7 @@ namespace NotepadOnlineMobile
             items.Add(new DataItem() { Name = name, Description = desc, Text = Settings.Storage.Preload ? text : null });
         }
 
-        private async void AddItem_Clicked(object sender, EventArgs e)
+        async void AddItem_Clicked(object sender, EventArgs e)
         {
             if (IsBusy)
                 return;
@@ -157,7 +157,7 @@ namespace NotepadOnlineMobile
             await CreateFileAsync();
         }
 
-        private async void AddItemSpecified_Clicked(object sender, EventArgs e)
+        async void AddItemSpecified_Clicked(object sender, EventArgs e)
         {
             if (IsBusy)
                 return;
@@ -224,14 +224,18 @@ namespace NotepadOnlineMobile
             IsBusy = false;
         }
 
-        private async void Menu_Refreshing(object sender, EventArgs e)
+        async void Menu_Refreshing(object sender, EventArgs e)
         {
             ((ListView)sender).IsRefreshing = false;
             await Load();
         }
 
-        private async void Menu_ItemTapped(object sender, ItemTappedEventArgs e)
+        async void Menu_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
             var item = (DataItem)e.Item;
 
             EditorPage editorPage;
@@ -256,6 +260,8 @@ namespace NotepadOnlineMobile
             };
             
             await Navigation.PushAsync(editorPage);
+
+            IsBusy = false;
         }
     }
 }

@@ -6,9 +6,9 @@ namespace NotepadOnlineMobile
 {
     public partial class ChangePasswordPage : ContentPage
     {
-        private string password;
-        private string newPassword;
-        private string confirmNewPassword;
+        string password;
+        string newPassword;
+        string confirmNewPassword;
 
         public string Password
         {
@@ -19,7 +19,7 @@ namespace NotepadOnlineMobile
             set
             {
                 password = value.Trim();
-                OnPropertyChanged("password");
+                OnPropertyChanged(nameof(Password));
             }
         }
 
@@ -32,7 +32,7 @@ namespace NotepadOnlineMobile
             set
             {
                 newPassword = value?.Trim();
-                OnPropertyChanged("NewPassword");
+                OnPropertyChanged(nameof(NewPassword));
             }
         }
 
@@ -45,7 +45,7 @@ namespace NotepadOnlineMobile
             set
             {
                 confirmNewPassword = value?.Trim();
-                OnPropertyChanged("ConfirmNewPassword");
+                OnPropertyChanged(nameof(ConfirmNewPassword));
             }
         }
 
@@ -55,7 +55,7 @@ namespace NotepadOnlineMobile
             BindingContext = this;
         }
 
-        private async void Change_Clicked(object sender, EventArgs e)
+        async void Change_Clicked(object sender, EventArgs e)
         {
             if (NewPassword != ConfirmNewPassword)
             {

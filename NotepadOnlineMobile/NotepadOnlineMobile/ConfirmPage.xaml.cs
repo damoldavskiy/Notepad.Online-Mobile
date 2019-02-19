@@ -6,7 +6,7 @@ namespace NotepadOnlineMobile
 {
     public partial class ConfirmPage : ContentPage
 	{
-        private string code;
+        string code;
 
         public string Code
         {
@@ -17,7 +17,7 @@ namespace NotepadOnlineMobile
             set
             {
                 code = value?.Trim();
-                OnPropertyChanged("Code");
+                OnPropertyChanged(nameof(Code));
             }
         }
 
@@ -27,7 +27,7 @@ namespace NotepadOnlineMobile
             BindingContext = this;
 		}
 
-        private async void Submit_Clicked(object sender, EventArgs e)
+        async void Submit_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;
             var result = await DataBase.Manager.ConfirmRegistrationAsync(code);

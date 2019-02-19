@@ -6,8 +6,8 @@ namespace NotepadOnlineMobile
 {
     public partial class LoginPage : ContentPage
     {
-        private string email;
-        private string password;
+        string email;
+        string password;
 
         public string Email
         {
@@ -18,7 +18,7 @@ namespace NotepadOnlineMobile
             set
             {
                 email = value?.Trim();
-                OnPropertyChanged("Email");
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -31,7 +31,7 @@ namespace NotepadOnlineMobile
             set
             {
                 password = value?.Trim();
-                OnPropertyChanged("Password");
+                OnPropertyChanged(nameof(Password));
             }
         }
 
@@ -44,7 +44,7 @@ namespace NotepadOnlineMobile
             Load();
         }
 
-        private async void Load()
+        async void Load()
         {
             if (Settings.Storage.Email != "")
             {
@@ -68,7 +68,7 @@ namespace NotepadOnlineMobile
             }
         }
 
-        private async void Signin_Clicked(object sender, EventArgs e)
+        async void Signin_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;
             var result = await DataBase.Manager.LoginAsync(Email, Password);
@@ -87,7 +87,7 @@ namespace NotepadOnlineMobile
             Application.Current.MainPage = new MainPage();
         }
 
-        private async void Forgot_Clicked(object sender, EventArgs e)
+        async void Forgot_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new RecoveryPage());
         }

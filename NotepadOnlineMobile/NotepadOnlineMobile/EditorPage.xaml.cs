@@ -51,8 +51,8 @@ namespace NotepadOnlineMobile
         public delegate void EditEventHandler(object sender, EditEventArgs e);
         public delegate void DeleteEventHandler(object sender, DeleteEventArgs e);
 
-        private string name;
-        private string text;
+        string name;
+        string text;
 
         public string Name
         {
@@ -107,7 +107,7 @@ namespace NotepadOnlineMobile
             Text = text;
         }
 
-        private async Task Load()
+        async Task Load()
         {
             IsBusy = true;
             var result = await DataBase.Manager.GetDataAsync(Name);
@@ -122,7 +122,7 @@ namespace NotepadOnlineMobile
             Text = result.Item3;
         }
 
-        private async void Save_Clicked(object sender, EventArgs e)
+        async void Save_Clicked(object sender, EventArgs e)
         {
             if (IsBusy || input.IsVisible)
                 return;
@@ -170,7 +170,7 @@ namespace NotepadOnlineMobile
             IsBusy = false;
         }
 
-        private async void Rename_Clicked(object sender, EventArgs e)
+        async void Rename_Clicked(object sender, EventArgs e)
         {
             if (IsBusy || input.IsVisible)
                 return;
@@ -179,7 +179,7 @@ namespace NotepadOnlineMobile
             await input.Show();
         }
 
-        private async void RenameSubmit_Clicked(object sender, EventArgs e)
+        async void RenameSubmit_Clicked(object sender, EventArgs e)
         {
             input.Hide();
             var newname = input.Text.Trim();
@@ -208,7 +208,7 @@ namespace NotepadOnlineMobile
             }
         }
 
-        private async void Delete_Clicked(object sender, EventArgs e)
+        async void Delete_Clicked(object sender, EventArgs e)
         {
             if (IsBusy || input.IsVisible)
                 return;

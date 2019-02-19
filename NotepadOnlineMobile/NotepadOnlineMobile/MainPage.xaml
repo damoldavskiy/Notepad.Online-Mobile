@@ -20,7 +20,7 @@
                     <Image Source="user.png" Margin="20,0,10,20" WidthRequest="50" VerticalOptions="Center" Grid.Row="1"/>
                     <Label FontSize="18" Text="{Binding User}" TextColor="{StaticResource TextAccent}" Margin="0,0,0,20" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
-                <ListView ItemTapped="ListView_ItemTapped" ItemsSource="{Binding Items}" SelectionMode="None" RowHeight="60" SeparatorVisibility="None">
+                <ListView ItemTapped="Menu_ItemTapped" ItemsSource="{Binding Items}" SelectionMode="None" RowHeight="60" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

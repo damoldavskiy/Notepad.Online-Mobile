@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+
 using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
@@ -47,7 +48,7 @@ namespace NotepadOnlineMobile
             Detail = new NavigationPage(new ExplorerPage());
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        void Menu_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             IsPresented = false;
             var currentPage = ((NavigationPage)Detail).CurrentPage;
