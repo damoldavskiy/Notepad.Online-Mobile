@@ -19,6 +19,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </local:RefreshableListView>
+            <Label FontFamily="sans-serif-light" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Text="Files appear here" IsVisible="False" TextColor="{StaticResource TextLight}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Items.Count}" Value="0">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
             <local:LongClickableImageButton Clicked="AddItem_Clicked" LongClicked="AddItemSpecified_Clicked" WidthRequest="60" HeightRequest="60" BackgroundColor="{StaticResource Primary}" Source="plus.png" CornerRadius="30" Padding="10" Margin="20" HorizontalOptions="End" VerticalOptions="End"/>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>

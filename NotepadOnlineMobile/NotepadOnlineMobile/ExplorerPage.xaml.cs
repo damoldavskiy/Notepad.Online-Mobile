@@ -85,7 +85,7 @@ namespace NotepadOnlineMobile
         {
             InitializeComponent();
             BindingContext = this;
-
+            
             Load();
         }
 
