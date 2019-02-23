@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.Settings.AbstractPage"
-             BackgroundColor="{StaticResource Background}">
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Items}" SelectionMode="None" ItemTapped="ListView_ItemTapped" RowHeight="60" SeparatorVisibility="None">
             <ListView.ItemTemplate>
@@ -18,7 +18,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Header}" TextColor="{StaticResource TextDark}" FontSize="18" VerticalOptions="End">
+                            <Label Text="{Binding Header}" TextColor="{DynamicResource TextDark}" FontSize="18" VerticalOptions="End">
                                 <Label.Triggers>
                                     <DataTrigger Binding="{Binding ValueVisible}" TargetType="Label" Value="False">
                                         <Setter Property="Grid.RowSpan" Value="2"/>
@@ -26,7 +26,7 @@
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>
-                            <Label Text="{Binding Value}" Grid.Row="1" IsVisible="{Binding ValueVisible}" TextColor="{StaticResource TextLight}" FontSize="14" VerticalOptions="Start"/>
+                            <Label Text="{Binding Value}" Grid.Row="1" IsVisible="{Binding ValueVisible}" TextColor="{DynamicResource TextLight}" FontSize="14" VerticalOptions="Start"/>
                             <local:NonClickableSwitch IsToggled="{Binding SwitcherToggled}" IsVisible="{Binding SwitcherVisible}" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Center"/>
                         </Grid>
                     </ViewCell>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.ExplorerPage"
-             BackgroundColor="{StaticResource BackgroundDark}"
+             BackgroundColor="{DynamicResource BackgroundDark}"
              Title="Explorer">
     <ContentPage.Content>
         <Grid>
@@ -11,22 +11,22 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="20" Margin="5" BackgroundColor="{StaticResource BackgroundLight}">
-                                <Label FontSize="20" Text="{Binding Name}" TextColor="{StaticResource TextDark}"/>
-                                <Label FontSize="15" Text="{Binding Description}" TextColor="{StaticResource TextLight}"/>
+                            <StackLayout Padding="20" Margin="5" BackgroundColor="{DynamicResource BackgroundLight}">
+                                <Label FontSize="20" Text="{Binding Name}" TextColor="{DynamicResource TextDark}"/>
+                                <Label FontSize="15" Text="{Binding Description}" TextColor="{DynamicResource TextLight}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </local:RefreshableListView>
-            <Label FontFamily="sans-serif-light" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Text="Files appear here" IsVisible="False" TextColor="{StaticResource TextLight}">
+            <Label FontFamily="sans-serif-light" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Text="Files appear here" IsVisible="False" TextColor="{DynamicResource TextLight}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label" Binding="{Binding Items.Count}" Value="0">
                         <Setter Property="IsVisible" Value="True"/>
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
-            <local:LongClickableImageButton Clicked="AddItem_Clicked" LongClicked="AddItemSpecified_Clicked" WidthRequest="60" HeightRequest="60" BackgroundColor="{StaticResource Primary}" Source="plus.png" CornerRadius="30" Padding="10" Margin="20" HorizontalOptions="End" VerticalOptions="End"/>
+            <local:LongClickableImageButton Clicked="AddItem_Clicked" LongClicked="AddItemSpecified_Clicked" WidthRequest="60" HeightRequest="60" BackgroundColor="#283593" Source="plus.png" CornerRadius="30" Padding="10" Margin="20" HorizontalOptions="End" VerticalOptions="End"/>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>

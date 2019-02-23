@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.ConfirmRecoveryPage"
-             BackgroundColor="{StaticResource Background}">
+             BackgroundColor="{DynamicResource Background}">
     <ContentPage.Content>
         <Grid>
             <StackLayout Margin="30" VerticalOptions="Center">
-                <Entry Text="{Binding Code}" Keyboard="Numeric" MaxLength="4" Placeholder="Confirm code" Style="{StaticResource LoginEntry}"/>
-                <Button Clicked="Submit_Clicked" Text="Submit" Style="{StaticResource LoginButton}"/>
+                <Entry Text="{Binding Code}" Keyboard="Numeric" MaxLength="4" Placeholder="Confirm code" Style="{DynamicResource LoginEntry}"/>
+                <Button Clicked="Submit_Clicked" Text="Submit" Style="{DynamicResource LoginButton}"/>
             </StackLayout>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>

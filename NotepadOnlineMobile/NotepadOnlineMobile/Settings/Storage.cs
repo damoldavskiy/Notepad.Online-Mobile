@@ -52,12 +52,18 @@ namespace NotepadOnlineMobile.Settings
             set { Set(nameof(FontSize), value); }
         }
 
+        public static string Theme
+        {
+            get { return (string)Get(nameof(Theme)); }
+            set { Set(nameof(Theme), value); }
+        }
+
         public static void Initialize()
         {
             var initialized = true;
 
             foreach (var property in typeof(Storage).GetProperties())
-                if (!App.Current.Properties.ContainsKey(property.Name))
+                if (!Application.Current.Properties.ContainsKey(property.Name))
                     initialized = false;
 
             if (initialized)
@@ -71,6 +77,7 @@ namespace NotepadOnlineMobile.Settings
             UseKeyWords = true;
             Preload = true;
             FontSize = 18;
+            Theme = "Light";
         }
 
         static object Get(string property)

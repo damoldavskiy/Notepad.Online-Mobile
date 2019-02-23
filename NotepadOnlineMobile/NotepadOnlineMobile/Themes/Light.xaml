@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotepadOnlineMobile.Themes.Light">
+    <Color x:Key="Background">#F5F5F6</Color>
+    <Color x:Key="BackgroundLight">#FFFFFF</Color>
+    <Color x:Key="BackgroundDark">#E1E2E1</Color>
+    <Color x:Key="Primary">#283593</Color>
+    <Color x:Key="PrimaryLight">#5F5FC4</Color>
+    <Color x:Key="PrimaryDark">#001064</Color>
+    <Color x:Key="TextAccent">#FFFFFF</Color>
+    <Color x:Key="TextLight">#808080</Color>
+    <Color x:Key="TextDark">#404040</Color>
+</ResourceDictionary>

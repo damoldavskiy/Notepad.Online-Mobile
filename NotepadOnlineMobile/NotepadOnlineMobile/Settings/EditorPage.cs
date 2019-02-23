@@ -21,6 +21,28 @@
                     }
                 }
             });
+
+            Items.Add(new SettingsItem()
+            {
+                Header = "Theme",
+                Value = Storage.Theme,
+                ValueVisible = true,
+                Action = async (item) =>
+                {
+                    var result = await DisplayActionSheet("Theme", "Cancel", null, "Light", "Dark");
+
+                    if (result == "Light" && Storage.Theme != "Light")
+                    {
+                        Storage.Theme = "Light";
+                        Themes.Manager.Update();
+                    }
+                    else if (result == "Dark" && Storage.Theme != "Dark")
+                    {
+                        Storage.Theme = "Dark";
+                        Themes.Manager.Update();
+                    }
+                }
+            });
         }
     }
 }
