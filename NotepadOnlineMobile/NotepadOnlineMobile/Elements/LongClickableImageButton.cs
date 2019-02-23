@@ -11,9 +11,9 @@ namespace NotepadOnlineMobile
         public LongClickableImageButton()
 		{ }
 
-        public void OnLongClicked(object s, EventArgs e)
+        public void OnLongClicked()
         {
-            LongClicked?.Invoke(this, e);
+            LongClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

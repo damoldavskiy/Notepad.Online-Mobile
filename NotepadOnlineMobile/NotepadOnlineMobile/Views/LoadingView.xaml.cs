@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -24,11 +23,12 @@ namespace NotepadOnlineMobile
         public LoadingView()
 		{
 			InitializeComponent();
+            
             IsVisible = false;
             Opacity = 0;
 		}
 
-        private static async void OnShowedPropertyChanging(BindableObject bindable, object oldValue, object newValue)
+        static async void OnShowedPropertyChanging(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (LoadingView)bindable;
 
@@ -39,7 +39,7 @@ namespace NotepadOnlineMobile
             }
         }
 
-        private static async void OnShowedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        static async void OnShowedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (LoadingView)bindable;
 

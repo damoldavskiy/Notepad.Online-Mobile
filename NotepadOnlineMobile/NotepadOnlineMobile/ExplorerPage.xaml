@@ -7,7 +7,7 @@
              Title="Explorer">
     <ContentPage.Content>
         <Grid>
-            <local:RefreshableListView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}">
+            <local:RecyclerView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}" ArrowColor="{StaticResource Primary}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -18,7 +18,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </local:RefreshableListView>
+            </local:RecyclerView>
             <Label FontFamily="sans-serif-light" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Text="Files appear here" IsVisible="False" TextColor="{StaticResource TextLight}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label" Binding="{Binding Items.Count}" Value="0">

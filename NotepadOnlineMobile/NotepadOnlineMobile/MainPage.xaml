@@ -5,7 +5,7 @@
              x:Class="NotepadOnlineMobile.MainPage">
 
     <MasterDetailPage.Master>
-        <ContentPage Title="Master">
+        <ContentPage Title="Master" BackgroundColor="{StaticResource BackgroundLight}">
             <StackLayout>
                 <Grid HeightRequest="150">
                     <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Image}" Margin="20,0,0,0" WidthRequest="30"/>
-                                    <Label FontSize="20" Margin="20,0,0,0" Text="{Binding Title}" VerticalOptions="Center"/>
+                                    <Label FontSize="20" Margin="20,0,0,0" Text="{Binding Title}" VerticalOptions="Center" TextColor="{StaticResource TextLight}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

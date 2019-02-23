@@ -19,7 +19,7 @@ namespace NotepadOnlineMobile.Droid
             base.OnElementChanged(e);
             
             LongClickable = true;
-            LongClick += (sender, args) => ((LongClickableImageButton)e.NewElement).OnLongClicked(sender, args);
+            LongClick += (sender, args) => ((LongClickableImageButton)e.NewElement).OnLongClicked();
         }
     }
 }

@@ -10,6 +10,9 @@ namespace NotepadOnlineMobile
         {
             InitializeComponent();
             Settings.Storage.Initialize();
+            
+            DependencyService.Get<IColorSetter>().SetStatusBarColor((Color)Resources["PrimaryDark"]);
+
             MainPage = new LoginRegisterPage();
         }
 

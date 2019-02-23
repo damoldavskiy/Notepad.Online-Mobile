@@ -64,10 +64,11 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dependencies\ColorSetter.cs" />
     <Compile Include="Renderers\NonClickableSwitchRenderer.cs" />
     <Compile Include="Renderers\LongClickableImageButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\RefreshableListViewRenderer.cs" />
+    <Compile Include="Renderers\RecyclerViewRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />

@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <Grid>
             <StackLayout Margin="30" VerticalOptions="Center">
-                <Label FontSize="30" Margin="0,0,0,10" HorizontalOptions="Center" Text="New account"/>
+                <Label FontSize="30" Margin="0,0,0,10" Text="New account" HorizontalOptions="Center" TextColor="{StaticResource TextDark}"/>
                 <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail" Style="{StaticResource LoginEntry}"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password" Style="{StaticResource LoginEntry}"/>
                 <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Confirm password" Style="{StaticResource LoginEntry}"/>
