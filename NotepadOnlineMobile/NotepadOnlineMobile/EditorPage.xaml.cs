@@ -144,7 +144,7 @@ namespace NotepadOnlineMobile
                 try
                 {
                     var words = await CognitiveServices.TextAnalytics.KeyPhrasesAsync(new[] { Text });
-                    if (words.Length > 0)
+                    if (words[0].Length > 0)
                         description = string.Join("; ", words[0]);
                     else
                         description = "No key words";

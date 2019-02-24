@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace NotepadOnlineMobile.Settings
 {
@@ -7,19 +8,19 @@ namespace NotepadOnlineMobile.Settings
         public static string Email
         {
             get { return Get(nameof(Email)).ToString(); }
-            set { Set(nameof(Email), value); }
+            set { Set(nameof(Email), value ?? Defaults[nameof(Email)]); }
         }
 
         public static string Password
         {
             get { return Get(nameof(Password)).ToString(); }
-            set { Set(nameof(Password), value); }
+            set { Set(nameof(Password), value ?? Defaults[nameof(Password)]); }
         }
 
         public static string Token
         {
             get { return Get(nameof(Token)).ToString(); }
-            set { Set(nameof(Token), value); }
+            set { Set(nameof(Token), value ?? Defaults[nameof(Token)]); }
         }
 
         public static bool AutoLogin
@@ -52,35 +53,33 @@ namespace NotepadOnlineMobile.Settings
             set { Set(nameof(FontSize), value); }
         }
 
+        public static Dictionary<string, object> Defaults { get; } = new Dictionary<string, object>
+        {
+            { nameof(Email), "" },
+            { nameof(Password), "" },
+            { nameof(Token), "" },
+            { nameof(AutoLogin), true },
+            { nameof(AskDelete), false },
+            { nameof(UseKeyWords), true },
+            { nameof(Preload), true },
+            { nameof(FontSize), 18 }
+        };
+
         public static void Initialize()
         {
-            var initialized = true;
-
             foreach (var property in typeof(Storage).GetProperties())
-                if (!App.Current.Properties.ContainsKey(property.Name))
-                    initialized = false;
-
-            if (initialized)
-                return;
-
-            Email = "";
-            Password = "";
-            Token = "";
-            AutoLogin = true;
-            AskDelete = false;
-            UseKeyWords = true;
-            Preload = true;
-            FontSize = 18;
+                if (property.Name != nameof(Defaults) && !Application.Current.Properties.ContainsKey(property.Name))
+                    Set(property.Name, Defaults[property.Name]);
         }
 
         static object Get(string property)
         {
-            return App.Current.Properties[property];
+            return Application.Current.Properties[property];
         }
 
         static void Set(string property, object value)
         {
-            App.Current.Properties[property] = value;
+            Application.Current.Properties[property] = value;
         }
     }
 }
