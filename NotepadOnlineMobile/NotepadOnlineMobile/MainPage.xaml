@@ -18,14 +18,14 @@
                     </Grid.ColumnDefinitions>
                     <Image Source="menu.png" Aspect="Fill" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
                     <Image Source="user.png" Margin="20,0,10,20" WidthRequest="50" VerticalOptions="Center" Grid.Row="1"/>
-                    <Label FontSize="18" Text="{Binding User}" TextColor="{StaticResource TextAccent}" Margin="0,0,0,20" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+                    <Label FontSize="18" Text="{Binding User}" TextColor="White" Margin="0,0,0,20" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
                 <ListView ItemTapped="Menu_ItemTapped" ItemsSource="{Binding Items}" SelectionMode="None" RowHeight="60" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Image}" Margin="20,0,0,0" WidthRequest="30"/>
+                                    <Image Source="{Binding Image}" Opacity="0.5" Margin="20,0,0,0" WidthRequest="30"/>
                                     <Label FontSize="20" Margin="20,0,0,0" Text="{Binding Title}" VerticalOptions="Center" TextColor="{StaticResource TextLight}"/>
                                 </StackLayout>
                             </ViewCell>

@@ -7,7 +7,7 @@
              Title="Explorer">
     <ContentPage.Content>
         <Grid>
-            <local:RecyclerView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}" ArrowColor="{StaticResource Primary}">
+            <local:RecyclerView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}" CircleColor="{StaticResource BackgroundLight}" ArrowColor="{StaticResource PrimaryLight}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

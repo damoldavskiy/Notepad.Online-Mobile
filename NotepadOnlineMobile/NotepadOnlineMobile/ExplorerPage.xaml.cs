@@ -146,7 +146,15 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            items.Add(new DataItem() { Name = name, Description = desc, Text = Settings.Storage.Preload ? text : null });
+            var item = new DataItem()
+            {
+                Name = name,
+                Description = desc,
+                Text = Settings.Storage.Preload ? text : null
+            };
+            items.Add(item);
+
+            Menu_ItemTapped(this, new ItemTappedEventArgs(items, item));
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

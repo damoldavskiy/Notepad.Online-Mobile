@@ -12,7 +12,7 @@
             </Grid.RowDefinitions>
             <BoxView BackgroundColor="{StaticResource PrimaryDark}"/>
             <Image Source="logo.png" VerticalOptions="Center" HorizontalOptions="Center"/>
-            <Label x:Name="content" Margin="20" Grid.Row="1"/>
+            <Label x:Name="content" Margin="20" Grid.Row="1" TextColor="{StaticResource TextLight}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
