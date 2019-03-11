@@ -5,42 +5,6 @@ using Xamarin.Forms;
 
 namespace NotepadOnlineMobile
 {
-    public class RenameEventArgs : EventArgs
-    {
-        public string OldName { get; }
-        public string NewName { get; }
-        
-        public RenameEventArgs(string oldName, string newName)
-        {
-            OldName = oldName;
-            NewName = newName;
-        }
-    }
-
-    public class EditEventArgs : EventArgs
-    {
-        public string Name { get; }
-        public string NewDescription { get; }
-        public string NewText { get; }
-
-        public EditEventArgs(string name, string newDescription, string newText)
-        {
-            Name = name;
-            NewDescription = newDescription;
-            NewText = newText;
-        }
-    }
-
-    public class DeleteEventArgs : EventArgs
-    {
-        public string Name { get; }
-
-        public DeleteEventArgs(string name)
-        {
-            Name = name;
-        }
-    }
-
     public partial class EditorPage : ContentPage
     {
         public event RenameEventHandler Renamed;
@@ -216,7 +180,7 @@ namespace NotepadOnlineMobile
             if (Settings.Storage.AskDelete)
             {
                 var ans = await DisplayActionSheet($"Do you really want to delete {Name}?", null, null, "Yes", "Cancel");
-                if (ans == "Cancel")
+                if (ans != "Yes")
                     return;
             }
 
