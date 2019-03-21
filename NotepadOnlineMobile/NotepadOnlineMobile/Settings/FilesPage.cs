@@ -66,7 +66,7 @@
                         Storage.UseKeyWords = false;
                         item.Value = "First characters";
                     }
-                    else
+                    else if (result == "Key words")
                     {
                         Storage.UseKeyWords = true;
                         item.Value = "Key words";
