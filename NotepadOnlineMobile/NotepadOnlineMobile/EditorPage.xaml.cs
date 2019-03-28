@@ -52,6 +52,14 @@ namespace NotepadOnlineMobile
             }
         }
 
+        public string FontFamily
+        {
+            get
+            {
+                return Settings.Storage.FontFamily;
+            }
+        }
+
         public EditorPage(string name)
         {
             InitializeComponent();
@@ -66,7 +74,7 @@ namespace NotepadOnlineMobile
         {
             InitializeComponent();
             BindingContext = this;
-
+            
             Name = name;
             Text = text;
         }
@@ -91,7 +99,7 @@ namespace NotepadOnlineMobile
             if (IsBusy || input.IsVisible)
                 return;
             IsBusy = true;
-
+            
             var result = await DataBase.Manager.EditTextAsync(Name, Text);
 
             if (result != DataBase.ReturnCode.Success)
@@ -145,7 +153,6 @@ namespace NotepadOnlineMobile
 
         async void RenameSubmit_Clicked(object sender, EventArgs e)
         {
-            input.Hide();
             var newname = input.Text.Trim();
 
             if (newname == Name)
@@ -153,9 +160,11 @@ namespace NotepadOnlineMobile
 
             if (!WindowsNamingRules.IsNameCorrect(newname))
             {
-                await DisplayAlert("Error", "The new name contains unacceptable symbols", "OK");
+                await DisplayAlert("Error", "New name contains unacceptable symbols", "OK");
                 return;
             }
+
+            input.Hide();
 
             IsBusy = true;
             var result = await DataBase.Manager.EditNameAsync(Name, newname);

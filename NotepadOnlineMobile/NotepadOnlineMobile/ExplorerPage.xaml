@@ -11,10 +11,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="20" Margin="5" BackgroundColor="{StaticResource BackgroundLight}">
-                                <Label FontSize="20" Text="{Binding Name}" TextColor="{StaticResource TextDark}"/>
-                                <Label FontSize="15" Text="{Binding Description}" TextColor="{StaticResource TextLight}"/>
-                            </StackLayout>
+                            <Frame Margin="5" Padding="20,0" BackgroundColor="{StaticResource BackgroundLight}">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label FontSize="20" Text="{Binding Name}" TextColor="{StaticResource TextDark}"/>
+                                    <Label FontSize="15" Text="{Binding Description}" TextColor="{StaticResource TextLight}"/>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

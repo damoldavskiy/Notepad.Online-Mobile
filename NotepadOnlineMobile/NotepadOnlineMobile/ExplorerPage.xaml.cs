@@ -28,7 +28,7 @@ namespace NotepadOnlineMobile
                 set
                 {
                     name = value;
-                    OnPropertyChanged("Name");
+                    OnPropertyChanged(nameof(Name));
                 }
             }
 
@@ -41,7 +41,7 @@ namespace NotepadOnlineMobile
                 set
                 {
                     description = (value.Length <= 60 ? value : value.Substring(0, 60) + "...").Replace('\n', ' ');
-                    OnPropertyChanged("Description");
+                    OnPropertyChanged(nameof(Description));
                 }
             }
 
@@ -54,13 +54,13 @@ namespace NotepadOnlineMobile
                 set
                 {
                     text = value;
-                    OnPropertyChanged("Text");
+                    OnPropertyChanged(nameof(Text));
                 }
             }
 
             public event PropertyChangedEventHandler PropertyChanged;
 
-            void OnPropertyChanged(string name)
+            public void OnPropertyChanged(string name)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
@@ -77,7 +77,7 @@ namespace NotepadOnlineMobile
             set
             {
                 items = value;
-                OnPropertyChanged("Items");
+                OnPropertyChanged(nameof(Items));
             }
         }
 
@@ -146,7 +146,7 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            var item = new DataItem()
+            var item = new DataItem
             {
                 Name = name,
                 Description = desc,
@@ -173,7 +173,7 @@ namespace NotepadOnlineMobile
             var action = await DisplayActionSheet("New file", "Cancel", null, "Empty file", "Pick from gallery", "Take photo");
 
             MediaFile photo = null;
-            var options = new StoreCameraMediaOptions()
+            var options = new StoreCameraMediaOptions
             {
                 Name = "image",
                 PhotoSize = PhotoSize.Medium
@@ -189,7 +189,7 @@ namespace NotepadOnlineMobile
                     if (CrossMedia.Current.IsPickPhotoSupported)
                         try
                         {
-                            photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
+                            photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
                             {
                                 PhotoSize = PhotoSize.Medium
                             });
@@ -243,7 +243,7 @@ namespace NotepadOnlineMobile
             if (IsBusy)
                 return;
             IsBusy = true;
-
+            
             var item = (DataItem)e.Item;
 
             EditorPage editorPage;

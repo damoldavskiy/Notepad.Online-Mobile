@@ -4,7 +4,7 @@
     {
         public FilesPage() : base("Files")
         {
-            Items.Add(new SettingsItem()
+            Items.Add(new SettingsItem
             {
                 Header = "Ask before delete",
                 Value = Storage.AskDelete ? "Enabled" : "Disabled",
@@ -28,7 +28,7 @@
                 }
             });
 
-            Items.Add(new SettingsItem()
+            Items.Add(new SettingsItem
             {
                 Header = "Preload files",
                 Value = Storage.Preload ? "Files load on start" : "Files load on tap",
@@ -52,7 +52,7 @@
                 }
             });
 
-            Items.Add(new SettingsItem()
+            Items.Add(new SettingsItem
             {
                 Header = "Description type",
                 Value = Storage.UseKeyWords ? "Key words" : "First characters",

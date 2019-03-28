@@ -16,7 +16,7 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Header}" TextColor="{StaticResource TextDark}" FontSize="18" VerticalOptions="End">
                                 <Label.Triggers>
@@ -27,7 +27,7 @@
                                 </Label.Triggers>
                             </Label>
                             <Label Text="{Binding Value}" Grid.Row="1" IsVisible="{Binding ValueVisible}" TextColor="{StaticResource TextLight}" FontSize="14" VerticalOptions="Start"/>
-                            <local:NonClickableSwitch IsToggled="{Binding SwitcherToggled}" IsVisible="{Binding SwitcherVisible}" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Center"/>
+                            <local:NonClickableSwitch IsToggled="{Binding SwitcherToggled}" IsVisible="{Binding SwitcherVisible}" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

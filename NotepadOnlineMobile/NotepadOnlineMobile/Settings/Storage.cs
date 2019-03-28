@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Xamarin.Forms;
 
@@ -54,6 +55,12 @@ namespace NotepadOnlineMobile.Settings
             set { Set(nameof(FontSize), value); }
         }
 
+        public static string FontFamily
+        {
+            get { return (string)Get(nameof(FontFamily)); }
+            set { Set(nameof(FontFamily), value); }
+        }
+
         public static Dictionary<string, object> Defaults { get; } = new Dictionary<string, object>
         {
             { nameof(Email), "" },
@@ -63,7 +70,8 @@ namespace NotepadOnlineMobile.Settings
             { nameof(AskDelete), false },
             { nameof(UseKeyWords), true },
             { nameof(Preload), true },
-            { nameof(FontSize), 18 }
+            { nameof(FontSize), 18 },
+            { nameof(FontFamily), Fonts.Current.First().Family }
         };
 
         public static void Initialize()

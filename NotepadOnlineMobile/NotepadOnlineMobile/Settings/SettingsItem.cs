@@ -21,7 +21,7 @@ namespace NotepadOnlineMobile.Settings
             set
             {
                 header = value;
-                OnPropertyChanged("Header");
+                OnPropertyChanged(nameof(Header));
             }
         }
 
@@ -32,7 +32,7 @@ namespace NotepadOnlineMobile.Settings
             set
             {
                 this.value = value;
-                OnPropertyChanged("Value");
+                OnPropertyChanged(nameof(Value));
             }
         }
 
@@ -43,7 +43,7 @@ namespace NotepadOnlineMobile.Settings
             set
             {
                 valueVisible = value;
-                OnPropertyChanged("ValueVisible");
+                OnPropertyChanged(nameof(ValueVisible));
             }
         }
 
@@ -54,7 +54,7 @@ namespace NotepadOnlineMobile.Settings
             set
             {
                 switcherVisible = value;
-                OnPropertyChanged("SwitcherVisible");
+                OnPropertyChanged(nameof(SwitcherVisible));
             }
         }
 
@@ -65,7 +65,7 @@ namespace NotepadOnlineMobile.Settings
             set
             {
                 switcherToggled = value;
-                OnPropertyChanged("SwitcherToggled");
+                OnPropertyChanged(nameof(SwitcherToggled));
             }
         }
 
@@ -76,11 +76,11 @@ namespace NotepadOnlineMobile.Settings
             set
             {
                 action = value;
-                OnPropertyChanged("Action");
+                OnPropertyChanged(nameof(Action));
             }
         }
 
-        void OnPropertyChanged(string name)
+        public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

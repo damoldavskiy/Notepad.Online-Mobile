@@ -11,7 +11,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
-            <Editor Text="{Binding Text}" FontSize="{Binding FontSize}" BackgroundColor="{StaticResource BackgroundLight}" TextColor="{StaticResource TextDark}"/>
+            <Editor Text="{Binding Text}" FontSize="{Binding FontSize}" FontFamily="{Binding FontFamily}" BackgroundColor="{StaticResource BackgroundLight}" TextColor="{StaticResource TextDark}"/>
             <local:InputView x:Name="input" SubmitClicked="RenameSubmit_Clicked"/>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>

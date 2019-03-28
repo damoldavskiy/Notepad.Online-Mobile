@@ -6,7 +6,7 @@ namespace NotepadOnlineMobile.Settings
     {
         public AccountPage() : base("Account")
         {
-            Items.Add(new SettingsItem()
+            Items.Add(new SettingsItem
             {
                 Header = "Auto-login",
                 Value = Storage.AutoLogin ? "Enabled" : "Disabled",
@@ -30,7 +30,7 @@ namespace NotepadOnlineMobile.Settings
                 }
             });
 
-            Items.Add(new SettingsItem()
+            Items.Add(new SettingsItem
             {
                 Header = "Change password",
                 Action = (item) =>
@@ -41,7 +41,7 @@ namespace NotepadOnlineMobile.Settings
                 }
             });
 
-            Items.Add(new SettingsItem()
+            Items.Add(new SettingsItem
             {
                 Header = "Log out",
                 Action = (item) =>

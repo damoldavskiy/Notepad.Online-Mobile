@@ -40,7 +40,7 @@ namespace NotepadOnlineMobile
 			InitializeComponent();
             BindingContext = this;
             NavigationPage.SetHasNavigationBar(this, false);
-
+            
             Load();
         }
 

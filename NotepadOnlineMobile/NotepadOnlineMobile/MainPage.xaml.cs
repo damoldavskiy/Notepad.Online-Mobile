@@ -32,7 +32,7 @@ namespace NotepadOnlineMobile
         {
             get
             {
-                return new ObservableCollection<MenuItem>()
+                return new ObservableCollection<MenuItem>
                 {
                     new MenuItem { Title = "Explorer", Image = "list.png", Type = MenuItemType.Explorer},
                     new MenuItem { Title = "Settings", Image = "settings.png", Type = MenuItemType.Settings },
