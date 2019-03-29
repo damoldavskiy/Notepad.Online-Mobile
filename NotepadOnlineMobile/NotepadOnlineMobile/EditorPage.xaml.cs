@@ -105,7 +105,7 @@ namespace NotepadOnlineMobile
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
-                await DisplayAlert("Error", $"An error occurred while creating new file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while saving file: {result}", "OK");
                 return;
             }
 
@@ -133,7 +133,7 @@ namespace NotepadOnlineMobile
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
-                await DisplayAlert("Error", $"An error occurred while updating file's description: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while updating description: {result}", "OK");
                 return;
             }
 
@@ -155,9 +155,6 @@ namespace NotepadOnlineMobile
         {
             var newname = input.Text.Trim();
 
-            if (newname == Name)
-                return;
-
             if (!WindowsNamingRules.IsNameCorrect(newname))
             {
                 await DisplayAlert("Error", "New name contains unacceptable symbols", "OK");
@@ -165,6 +162,9 @@ namespace NotepadOnlineMobile
             }
 
             input.Hide();
+
+            if (newname == Name)
+                return;
 
             IsBusy = true;
             var result = await DataBase.Manager.EditNameAsync(Name, newname);
@@ -177,7 +177,7 @@ namespace NotepadOnlineMobile
             }
             else
             {
-                await DisplayAlert("Error", $"An error occurred while renaming: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while renaming file: {result}", "OK");
             }
         }
 
@@ -199,7 +199,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while creating new file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while deleting file: {result}", "OK");
                 return;
             }
 
