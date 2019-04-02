@@ -13,8 +13,8 @@
                         <ViewCell>
                             <Frame Margin="5" Padding="20,0" BackgroundColor="{StaticResource BackgroundLight}">
                                 <StackLayout VerticalOptions="Center">
-                                    <Label FontSize="20" Text="{Binding Name}" TextColor="{StaticResource TextDark}"/>
-                                    <Label FontSize="15" Text="{Binding Description}" TextColor="{StaticResource TextLight}"/>
+                                    <Label FontSize="20" Text="{Binding Name}" LineBreakMode="TailTruncation" TextColor="{StaticResource TextDark}"/>
+                                    <Label FontSize="15" Text="{Binding Description}" MaxLines="2" LineBreakMode="TailTruncation" TextColor="{StaticResource TextLight}"/>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

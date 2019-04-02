@@ -40,7 +40,7 @@ namespace NotepadOnlineMobile
                 }
                 set
                 {
-                    description = (value.Length <= 60 ? value : value.Substring(0, 60) + "...").Replace('\n', ' ');
+                    description = value;
                     OnPropertyChanged(nameof(Description));
                 }
             }

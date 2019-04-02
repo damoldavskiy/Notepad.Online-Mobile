@@ -87,6 +87,7 @@ namespace NotepadOnlineMobile
 
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
+                await Navigation.PopAsync();
                 await DisplayAlert("Error", $"An error occurred while opening file: {result.Item1}", "OK");
                 return;
             }
@@ -127,7 +128,9 @@ namespace NotepadOnlineMobile
                     description = Text;
                 }
             else
-                description = Text;
+                description = Text.Trim();
+
+            text = text.Substring(0, 200);
 
             result = await DataBase.Manager.EditDescriptionAsync(Name, description);
             if (result != DataBase.ReturnCode.Success)
