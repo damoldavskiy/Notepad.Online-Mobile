@@ -11,7 +11,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-            <BoxView Color="Black" Margin="30" CornerRadius="20" Opacity="0.8" HeightRequest="100" VerticalOptions="Center"/>
+            <BoxView Color="Black" Margin="30" CornerRadius="20" Opacity="0.9" HeightRequest="100" VerticalOptions="Center"/>
             <StackLayout Margin="50" VerticalOptions="Center">
                 <Entry Text="{Binding Text}" HorizontalOptions="FillAndExpand" PlaceholderColor="#808080" TextColor="White" Placeholder="Enter new name"/>
                 <StackLayout Orientation="Horizontal">

@@ -132,7 +132,8 @@ namespace NotepadOnlineMobile
             else
                 description = Text.Trim();
 
-            text = text.Substring(0, 200);
+            if (description.Length > 200)
+                description = description.Substring(0, 200);
 
             result = await DataBase.Manager.EditDescriptionAsync(Name, description);
             if (result != DataBase.ReturnCode.Success)
