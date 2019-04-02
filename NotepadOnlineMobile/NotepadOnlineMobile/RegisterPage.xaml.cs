@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {
     public partial class RegisterPage : ContentPage
@@ -70,7 +72,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during creating new user: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during creating new user. {result.GetDescription()}", "OK");
                 return;
             }
 

@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {
     public partial class ChangePasswordPage : ContentPage
@@ -57,6 +59,12 @@ namespace NotepadOnlineMobile
 
         async void Change_Clicked(object sender, EventArgs e)
         {
+            if (Password != DataBase.Manager.Password)
+            {
+                await DisplayAlert("Error", "Type your current password to the needed box", "OK");
+                return;
+            }
+
             if (NewPassword != ConfirmNewPassword)
             {
                 await DisplayAlert("Error", "You should confirm new password by typing it to the needed box", "OK");
@@ -69,7 +77,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during changing password: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during changing password. {result.GetDescription()}", "OK");
                 return;
             }
 

@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {
     public partial class EditorPage : ContentPage
@@ -88,7 +90,7 @@ namespace NotepadOnlineMobile
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
                 await Navigation.PopAsync();
-                await DisplayAlert("Error", $"An error occurred while opening file: {result.Item1}", "OK");
+                await DisplayAlert("Error", $"An error occurred while opening file. {result.Item1.GetDescription()}", "OK");
                 return;
             }
 
@@ -106,7 +108,7 @@ namespace NotepadOnlineMobile
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
-                await DisplayAlert("Error", $"An error occurred while saving file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while saving file. {result.GetDescription()}", "OK");
                 return;
             }
 
@@ -124,7 +126,7 @@ namespace NotepadOnlineMobile
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Error", $"An error occurred while getting key words: {ex.Message}", "OK");
+                    await DisplayAlert("Error", $"An error occurred while getting key words. {ex.Message}", "OK");
                     description = Text;
                 }
             else
@@ -136,7 +138,7 @@ namespace NotepadOnlineMobile
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
-                await DisplayAlert("Error", $"An error occurred while updating description: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while updating description. {result.GetDescription()}", "OK");
                 return;
             }
 
@@ -180,7 +182,7 @@ namespace NotepadOnlineMobile
             }
             else
             {
-                await DisplayAlert("Error", $"An error occurred while renaming file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while renaming file. {result.GetDescription()}", "OK");
             }
         }
 
@@ -202,7 +204,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while deleting file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while deleting file. {result.GetDescription()}", "OK");
                 return;
             }
 

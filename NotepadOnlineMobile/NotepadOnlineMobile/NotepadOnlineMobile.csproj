@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.1.1-beta" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1009999" />
@@ -18,13 +17,10 @@
 
   <ItemGroup>
     <Reference Include="CognitiveServices">
-      <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Debug\CognitiveServices.dll</HintPath>
+      <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Release\CognitiveServices.dll</HintPath>
     </Reference>
     <Reference Include="DataBase">
       <HintPath>..\..\..\NotepadOnlineConnection\DataBase\bin\Release\DataBase.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\NotepadOnlineConnection\CognitiveServices\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
 

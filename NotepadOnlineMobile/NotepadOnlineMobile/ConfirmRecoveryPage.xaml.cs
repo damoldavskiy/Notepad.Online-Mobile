@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {
     public partial class ConfirmRecoveryPage : ContentPage
@@ -35,7 +37,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during confirming registration: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during confirming registration. {result.GetDescription()}", "OK");
                 return;
             }
 

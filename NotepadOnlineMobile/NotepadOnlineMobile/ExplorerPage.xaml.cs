@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {   
     public partial class ExplorerPage : ContentPage
@@ -97,7 +99,7 @@ namespace NotepadOnlineMobile
             var result = await DataBase.Manager.GetNamesAsync();
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while observing files: {result.Item1}", "OK");
+                await DisplayAlert("Error", $"An error occurred while observing files. {result.Item1.GetDescription()}", "OK");
                 IsBusy = false;
                 return;
             }
@@ -106,7 +108,7 @@ namespace NotepadOnlineMobile
             result = await DataBase.Manager.GetDescriptionsAsync();
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while observing descriptions: {result.Item1}", "OK");
+                await DisplayAlert("Error", $"An error occurred while observing descriptions. {result.Item1.GetDescription()}", "OK");
                 IsBusy = false;
                 return;
             }
@@ -117,7 +119,7 @@ namespace NotepadOnlineMobile
                 result = await DataBase.Manager.GetTextAsync();
                 if (result.Item1 != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred while observing data: {result.Item1}", "OK");
+                    await DisplayAlert("Error", $"An error occurred while observing data. {result.Item1.GetDescription()}", "OK");
                     IsBusy = false;
                     return;
                 }
@@ -142,7 +144,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while creating file: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred while creating file. {result.GetDescription()}", "OK");
                 return;
             }
 

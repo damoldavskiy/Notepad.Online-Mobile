@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {
     public partial class LoginPage : ContentPage
@@ -60,7 +62,7 @@ namespace NotepadOnlineMobile
 
                 if (result != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred during login: {result}", "OK");
+                    await DisplayAlert("Error", $"An error occurred during login. {result.GetDescription()}", "OK");
                     return;
                 }
 
@@ -76,7 +78,7 @@ namespace NotepadOnlineMobile
             
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during login: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during login. {result.GetDescription()}", "OK");
                 return;
             }
             

@@ -2,6 +2,8 @@
 
 using Xamarin.Forms;
 
+using static DataBase.ReturnCodeDescriptions;
+
 namespace NotepadOnlineMobile
 {
     public partial class RecoveryPage : ContentPage
@@ -69,7 +71,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during recovering password: {result}", "OK");
+                await DisplayAlert("Error", $"An error occurred during recovering password. {result.GetDescription()}", "OK");
                 return;
             }
 
