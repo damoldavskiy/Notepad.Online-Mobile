@@ -69,7 +69,7 @@ namespace NotepadOnlineMobile
             
             Name = name;
 
-            Load();
+            Task.Run(Load);
         }
 
         public EditorPage(string name, string text)
@@ -167,7 +167,7 @@ namespace NotepadOnlineMobile
                 return;
             }
 
-            input.Hide();
+            _ = input.Hide();
 
             if (newname == Name)
                 return;

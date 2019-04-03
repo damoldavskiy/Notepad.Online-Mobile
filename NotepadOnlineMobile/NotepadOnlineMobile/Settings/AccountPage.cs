@@ -35,8 +35,10 @@ namespace NotepadOnlineMobile.Settings
                 Header = "Change password",
                 Action = (item) =>
                 {
-                    var page = new ChangePasswordPage();
-                    page.Title = "Changing password";
+                    var page = new ChangePasswordPage
+                    {
+                        Title = "Changing password"
+                    };
                     Navigation.PushAsync(page);
                 }
             });

@@ -14,9 +14,8 @@ namespace NotepadOnlineMobile.Settings
                 Action = async (item) =>
                 {
                     var result = await DisplayActionSheet("Font size", "Cancel", null, "12", "14", "16", "18", "20");
-                    
-                    int size;
-                    if (int.TryParse(result, out size))
+
+                    if (int.TryParse(result, out int size))
                     {
                         Storage.FontSize = size;
                         item.Value = "Current size: " + result;

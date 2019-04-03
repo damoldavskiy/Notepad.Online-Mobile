@@ -7,7 +7,7 @@ namespace NotepadOnlineMobile
 {
     public static class Fonts
     {
-        static FontFamily[] androidFonts = new[]
+        static readonly FontFamily[] androidFonts = new[]
         {
             new FontFamily("Roboto Regular", "sans-serif"),
             new FontFamily("Roboto Light", "sans-serif-light"),

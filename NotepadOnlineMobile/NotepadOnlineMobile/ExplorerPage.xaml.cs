@@ -88,7 +88,7 @@ namespace NotepadOnlineMobile
             InitializeComponent();
             BindingContext = this;
             
-            Load();
+            Task.Run(Load);
         }
 
         async Task Load()
