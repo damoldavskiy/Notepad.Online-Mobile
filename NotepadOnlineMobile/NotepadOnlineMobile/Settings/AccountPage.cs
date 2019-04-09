@@ -48,9 +48,10 @@ namespace NotepadOnlineMobile.Settings
                 Header = "Log out",
                 Action = (item) =>
                 {
-                    Storage.Email = "";
-                    Storage.Password = "";
-                    Storage.Token = "";
+                    Storage.Email = null;
+                    Storage.Password = null;
+                    Storage.Token = null;
+                    DataBase.Manager.Logout();
                     Application.Current.MainPage = new LoginRegisterPage();
                 }
             });
