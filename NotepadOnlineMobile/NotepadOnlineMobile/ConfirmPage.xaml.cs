@@ -41,6 +41,10 @@ namespace NotepadOnlineMobile
                 return;
             }
 
+            Settings.Storage.Email = DataBase.Manager.Email;
+            Settings.Storage.Password = DataBase.Manager.Password;
+            Settings.Storage.Token = DataBase.Manager.Token;
+
             Application.Current.MainPage = new MainPage();
         }
     }

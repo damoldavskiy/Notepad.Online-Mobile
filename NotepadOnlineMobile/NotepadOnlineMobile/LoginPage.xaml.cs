@@ -81,7 +81,11 @@ namespace NotepadOnlineMobile
                 await DisplayAlert("Error", $"An error occurred during login. {result.GetDescription()}", "OK");
                 return;
             }
-            
+
+            Settings.Storage.Email = DataBase.Manager.Email;
+            Settings.Storage.Password = DataBase.Manager.Password;
+            Settings.Storage.Token = DataBase.Manager.Token;
+
             Application.Current.MainPage = new MainPage();
         }
 
