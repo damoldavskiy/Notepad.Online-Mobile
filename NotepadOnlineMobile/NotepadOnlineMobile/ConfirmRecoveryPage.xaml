@@ -7,8 +7,8 @@
     <ContentPage.Content>
         <Grid>
             <StackLayout Margin="30" VerticalOptions="Center">
-                <Entry Text="{Binding Code}" Keyboard="Numeric" MaxLength="4" Placeholder="Confirm code" Style="{StaticResource LoginEntry}"/>
-                <Button Clicked="Submit_Clicked" Text="Submit" Style="{StaticResource LoginButton}"/>
+                <Entry Text="{Binding Code}" Keyboard="Numeric" MaxLength="4" Placeholder="{x:Static local:Resource.ConfirmCode}" Style="{StaticResource LoginEntry}"/>
+                <Button Clicked="Submit_Clicked" Text="{x:Static local:Resource.Submit}" Style="{StaticResource LoginButton}"/>
             </StackLayout>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>

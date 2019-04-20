@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="AutoLogin" xml:space="preserve">
+    <value>Автовход</value>
+  </data>
+  <data name="ConfirmCode" xml:space="preserve">
+    <value>Код подтверждения</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Подтвердите новый пароль</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Выключено</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Explorer" xml:space="preserve">
+    <value>Просмотр файлов</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Авторизация</value>
+  </data>
+  <data name="Log_in" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="NewAccount" xml:space="preserve">
+    <value>Новый аккаунт</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PasswordRecovery" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="Recovery" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Sign_in" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Sign_up" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="AskBeforeDelete" xml:space="preserve">
+    <value>Спрашивать перед удалением</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="CurrentFamily" xml:space="preserve">
+    <value>Текущее семейство</value>
+  </data>
+  <data name="CurrentSize" xml:space="preserve">
+    <value>Текущий размер</value>
+  </data>
+  <data name="DescriptionType" xml:space="preserve">
+    <value>Тип описания</value>
+  </data>
+  <data name="Editor" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="FilesLoadOnStart" xml:space="preserve">
+    <value>Файлы загружаются при старте</value>
+  </data>
+  <data name="FilesLoadOnTap" xml:space="preserve">
+    <value>Файлы загружаются при нажатии</value>
+  </data>
+  <data name="FirstCharacters" xml:space="preserve">
+    <value>Первые символы</value>
+  </data>
+  <data name="FontFamily" xml:space="preserve">
+    <value>Семейство шрифта</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Размер шрифта</value>
+  </data>
+  <data name="KeyWords" xml:space="preserve">
+    <value>Ключевые слова</value>
+  </data>
+  <data name="Log_out" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="PreloadFiles" xml:space="preserve">
+    <value>Предзагрузка файлов</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Notepad.Online Mobile
+Версия: 1.0
+
+Есть вопрос? Свяжитесь с разработчиком: party_50@mail.ru</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CameraNotAvailable" xml:space="preserve">
+    <value>Камера недоступна</value>
+  </data>
+  <data name="ChangingPasswordError" xml:space="preserve">
+    <value>Во время изменения пароля произошла ошибка.</value>
+  </data>
+  <data name="CreatingFileError" xml:space="preserve">
+    <value>Во время создания файла произошла ошибка.</value>
+  </data>
+  <data name="DeleteFileError" xml:space="preserve">
+    <value>Во время удаления файла произошла ошибка.</value>
+  </data>
+  <data name="DoYouWantToDelete" xml:space="preserve">
+    <value>Вы действительно хотите удалить</value>
+  </data>
+  <data name="EmptyFile" xml:space="preserve">
+    <value>Пустой файл</value>
+  </data>
+  <data name="EnterNewName" xml:space="preserve">
+    <value>Введите новое название</value>
+  </data>
+  <data name="GalleryNorAvailable" xml:space="preserve">
+    <value>Галерея недоступна</value>
+  </data>
+  <data name="GetKeyWordsError" xml:space="preserve">
+    <value>Во время получения ключевых слов произошла ошибка.</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Во время входа произошла ошибка.</value>
+  </data>
+  <data name="NewEmptyFile" xml:space="preserve">
+    <value>Новый пустой файл</value>
+  </data>
+  <data name="NewFile" xml:space="preserve">
+    <value>Новый файл</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NoKeyWords" xml:space="preserve">
+    <value>Нет ключевых слов</value>
+  </data>
+  <data name="NoPickPhotoPermission" xml:space="preserve">
+    <value>Нет разрешения выбирать фотографии</value>
+  </data>
+  <data name="NoTakePhotoPermission" xml:space="preserve">
+    <value>Нет разрешения делать фотографии</value>
+  </data>
+  <data name="ObservingDataError" xml:space="preserve">
+    <value>Во время получения данных файлов произошла ошибка.</value>
+  </data>
+  <data name="ObservingDescriptionsError" xml:space="preserve">
+    <value>Во время получения описаний файлов произошла ошибка.</value>
+  </data>
+  <data name="ObservingFilesError" xml:space="preserve">
+    <value>Во время получения списка файлов произошла ошибка.</value>
+  </data>
+  <data name="OpenFileError" xml:space="preserve">
+    <value>Во время открытия файла произошла ошибка.</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Пароль успешно изменен</value>
+  </data>
+  <data name="PickFromGallery" xml:space="preserve">
+    <value>Выбрать из галереи</value>
+  </data>
+  <data name="RecognizedText" xml:space="preserve">
+    <value>Распознанный на фотографии текст</value>
+  </data>
+  <data name="RecoveryConfirmationError" xml:space="preserve">
+    <value>Во время подтверждения восстановления пароля произошла ошибка.</value>
+  </data>
+  <data name="RecoveryError" xml:space="preserve">
+    <value>Во время восстановления пароля произошла ошибка.</value>
+  </data>
+  <data name="RegistrationConfirmationError" xml:space="preserve">
+    <value>Во время подтверждения регистрации произошла ошибка.</value>
+  </data>
+  <data name="RegistrationError" xml:space="preserve">
+    <value>Во время создания нового пользователя произошла ошибка.</value>
+  </data>
+  <data name="RenamingError" xml:space="preserve">
+    <value>Во время переименования файла произошла ошибка.</value>
+  </data>
+  <data name="SaveFileError" xml:space="preserve">
+    <value>Во время сохранения файла произошла ошибка.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Успех</value>
+  </data>
+  <data name="TakePhoto" xml:space="preserve">
+    <value>Сделать фотографию</value>
+  </data>
+  <data name="TypeCurrentPassword" xml:space="preserve">
+    <value>Введите текущий пароль в соответствующее поле</value>
+  </data>
+  <data name="TypeNewPassword" xml:space="preserve">
+    <value>Повторите новый пароль, введя его в соответствующее поле</value>
+  </data>
+  <data name="UnacceptableSymbols" xml:space="preserve">
+    <value>Новое название содержит недопустимые символы</value>
+  </data>
+  <data name="UpdatingDescriptionError" xml:space="preserve">
+    <value>Во время обновления описания файла произошла ошибка.</value>
+  </data>
+  <data name="Wait" xml:space="preserve">
+    <value>Подождите...</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="FilesAppearHere" xml:space="preserve">
+    <value>Файлы появляются здесь</value>
+  </data>
+</root>

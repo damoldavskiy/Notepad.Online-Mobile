@@ -8,7 +8,7 @@ namespace NotepadOnlineMobile
 		{
 			InitializeComponent();
 
-            content.Text = "Notepad.Online Mobile\nVersion: 1.0\n\nHave a question? Contact with developer: party_50@mail.ru";
+            content.Text = Resource.Info;
         }
 	}
 }

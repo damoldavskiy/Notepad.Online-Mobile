@@ -10,8 +10,8 @@ namespace NotepadOnlineMobile
 
             var login = new NavigationPage(new LoginPage());
             var register = new NavigationPage(new RegisterPage());
-            login.Title = "Login";
-            register.Title = "Register";
+            login.Title = Resource.Login;
+            register.Title = Resource.Register;
             
             Children.Add(login);
             Children.Add(register);

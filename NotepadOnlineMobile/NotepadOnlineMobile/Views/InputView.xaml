@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.InputView">
     <ContentView.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource LoginButton}">
@@ -13,10 +14,10 @@
         <Grid>
             <BoxView Color="Black" Margin="30" CornerRadius="20" Opacity="0.9" HeightRequest="100" VerticalOptions="Center"/>
             <StackLayout Margin="50" VerticalOptions="Center">
-                <Entry Text="{Binding Text}" HorizontalOptions="FillAndExpand" PlaceholderColor="#808080" TextColor="White" Placeholder="Enter new name"/>
+                <Entry Text="{Binding Text}" HorizontalOptions="FillAndExpand" PlaceholderColor="#808080" TextColor="White" Placeholder="{x:Static local:Resource.EnterNewName}"/>
                 <StackLayout Orientation="Horizontal">
-                    <Button Clicked="Submit_Clicked" HorizontalOptions="FillAndExpand" Text="Submit"/>
-                    <Button Clicked="Cancel_Clicked" HorizontalOptions="FillAndExpand" Text="Cancel"/>
+                    <Button Clicked="Submit_Clicked" HorizontalOptions="FillAndExpand" Text="{x:Static local:Resource.Submit}"/>
+                    <Button Clicked="Cancel_Clicked" HorizontalOptions="FillAndExpand" Text="{x:Static local:Resource.Cancel}"/>
                 </StackLayout>
             </StackLayout>
         </Grid>

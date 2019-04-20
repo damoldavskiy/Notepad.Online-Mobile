@@ -34,9 +34,9 @@ namespace NotepadOnlineMobile
             {
                 return new ObservableCollection<MenuItem>
                 {
-                    new MenuItem { Title = "Explorer", Image = "list.png", Type = MenuItemType.Explorer},
-                    new MenuItem { Title = "Settings", Image = "settings.png", Type = MenuItemType.Settings },
-                    new MenuItem { Title = "About", Image = "about.png", Type = MenuItemType.About }
+                    new MenuItem { Title = Resource.Explorer, Image = "list.png", Type = MenuItemType.Explorer},
+                    new MenuItem { Title = Resource.Settings, Image = "settings.png", Type = MenuItemType.Settings },
+                    new MenuItem { Title = Resource.About, Image = "about.png", Type = MenuItemType.About }
                 };
             }
         }

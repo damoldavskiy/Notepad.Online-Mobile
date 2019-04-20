@@ -90,7 +90,7 @@ namespace NotepadOnlineMobile
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
                 await Navigation.PopAsync();
-                await DisplayAlert("Error", $"An error occurred while opening file. {result.Item1.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.OpenFileError + " " + result.Item1.GetDescription(), Resource.Ok);
                 return;
             }
 
@@ -108,13 +108,13 @@ namespace NotepadOnlineMobile
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
-                await DisplayAlert("Error", $"An error occurred while saving file. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.SaveFileError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 
             string description;
             if (string.IsNullOrWhiteSpace(Text))
-                description = "Empty file";
+                description = Resource.EmptyFile;
             else if (Settings.Storage.UseKeyWords)
                 try
                 {
@@ -122,11 +122,11 @@ namespace NotepadOnlineMobile
                     if (words[0].Length > 0)
                         description = string.Join("; ", words[0]);
                     else
-                        description = "No key words";
+                        description = Resource.NoKeyWords;
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Error", $"An error occurred while getting key words. {ex.Message}", "OK");
+                    await DisplayAlert(Resource.Error, Resource.GetKeyWordsError + " " + ex.Message, Resource.Ok);
                     description = Text;
                 }
             else
@@ -139,7 +139,7 @@ namespace NotepadOnlineMobile
             if (result != DataBase.ReturnCode.Success)
             {
                 IsBusy = false;
-                await DisplayAlert("Error", $"An error occurred while updating description. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.UpdatingDescriptionError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 
@@ -163,7 +163,7 @@ namespace NotepadOnlineMobile
 
             if (!WindowsNamingRules.IsNameCorrect(newname))
             {
-                await DisplayAlert("Error", "New name contains unacceptable symbols", "OK");
+                await DisplayAlert(Resource.Error, Resource.UnacceptableSymbols, Resource.Ok);
                 return;
             }
 
@@ -183,7 +183,7 @@ namespace NotepadOnlineMobile
             }
             else
             {
-                await DisplayAlert("Error", $"An error occurred while renaming file. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.RenamingError + " " + result.GetDescription(), Resource.Ok);
             }
         }
 
@@ -194,8 +194,8 @@ namespace NotepadOnlineMobile
 
             if (Settings.Storage.AskDelete)
             {
-                var ans = await DisplayActionSheet($"Do you really want to delete {Name}?", null, null, "Yes", "Cancel");
-                if (ans != "Yes")
+                var ans = await DisplayActionSheet(Resource.DoYouWantToDelete + " " + Name + "?", null, null, Resource.Yes, Resource.Cancel);
+                if (ans != Resource.Yes)
                     return;
             }
 
@@ -205,7 +205,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while deleting file. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.DeleteFileError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 

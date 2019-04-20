@@ -61,13 +61,13 @@ namespace NotepadOnlineMobile
         {
             if (Password != DataBase.Manager.Password)
             {
-                await DisplayAlert("Error", "Type your current password to the needed box", "OK");
+                await DisplayAlert(Resource.Error, Resource.TypeCurrentPassword, Resource.Ok);
                 return;
             }
 
             if (NewPassword != ConfirmNewPassword)
             {
-                await DisplayAlert("Error", "You should confirm new password by typing it to the needed box", "OK");
+                await DisplayAlert(Resource.Error, Resource.TypeNewPassword, Resource.Ok);
                 return;
             }
 
@@ -77,13 +77,13 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during changing password. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.ChangingPasswordError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 
             Settings.Storage.Password = DataBase.Manager.Password;
 
-            await DisplayAlert("Success", "Password changed successfuly", "OK");
+            await DisplayAlert(Resource.Success, Resource.PasswordChanged, Resource.Ok);
         }
     }
 }

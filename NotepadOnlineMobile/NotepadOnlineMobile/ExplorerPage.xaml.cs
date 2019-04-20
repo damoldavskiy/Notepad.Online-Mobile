@@ -99,7 +99,7 @@ namespace NotepadOnlineMobile
             var result = await DataBase.Manager.GetNamesAsync();
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while observing files. {result.Item1.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.ObservingFilesError + " " + result.Item1.GetDescription(), Resource.Ok);
                 IsBusy = false;
                 return;
             }
@@ -108,7 +108,7 @@ namespace NotepadOnlineMobile
             result = await DataBase.Manager.GetDescriptionsAsync();
             if (result.Item1 != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while observing descriptions. {result.Item1.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.ObservingDescriptionsError + " " + result.Item1.GetDescription(), Resource.Ok);
                 IsBusy = false;
                 return;
             }
@@ -119,7 +119,7 @@ namespace NotepadOnlineMobile
                 result = await DataBase.Manager.GetTextAsync();
                 if (result.Item1 != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred while observing data. {result.Item1.GetDescription()}", "OK");
+                    await DisplayAlert(Resource.Error, Resource.ObservingDataError, Resource.Ok);
                     IsBusy = false;
                     return;
                 }
@@ -134,9 +134,9 @@ namespace NotepadOnlineMobile
             IsBusy = false;
         }
 
-        async Task CreateFileAsync(string name="New file", string desc="New empty file", string text="")
+        async Task CreateFileAsync(string name, string desc, string text="")
         {
-            for (int i = 0; items.Count(c => c.Name == name) > 0; name = "New file " + ++i) ;
+            for (int i = 0; items.Count(c => c.Name == name) > 0; name = Resource.NewFile + " " + ++i) ;
 
             IsBusy = true;
             var result = await DataBase.Manager.AddDataAsync(name, desc, text);
@@ -144,7 +144,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred while creating file. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.CreatingFileError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 
@@ -164,7 +164,7 @@ namespace NotepadOnlineMobile
             if (IsBusy)
                 return;
 
-            await CreateFileAsync();
+            await CreateFileAsync(Resource.NewFile, Resource.NewEmptyFile, "");
         }
 
         async void AddItemSpecified_Clicked(object sender, EventArgs e)
@@ -172,7 +172,7 @@ namespace NotepadOnlineMobile
             if (IsBusy)
                 return;
 
-            var action = await DisplayActionSheet("New file", "Cancel", null, "Empty file", "Pick from gallery", "Take photo");
+            var action = await DisplayActionSheet(Resource.NewFile, Resource.Cancel, null, Resource.EmptyFile, Resource.PickFromGallery, Resource.TakePhoto);
 
             MediaFile photo = null;
             var options = new StoreCameraMediaOptions
@@ -181,56 +181,52 @@ namespace NotepadOnlineMobile
                 PhotoSize = PhotoSize.Medium
             };
 
-            switch (action)
-            {
-                case "Empty file":
-                    AddItem_Clicked(sender, e);
-                    return;
-                
-                case "Pick from gallery":
-                    if (CrossMedia.Current.IsPickPhotoSupported)
-                        try
-                        {
-                            photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-                            {
-                                PhotoSize = PhotoSize.Medium
-                            });
-                        }
-                        catch (MediaPermissionException)
-                        {
-                            await DisplayAlert("Error", "No permission to pick photo", "OK");
-                        }
-                    else
-                        await DisplayAlert("Error", "Gallery is not available", "OK");
-                    break;
-                
-                case "Take photo":
-                    if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
-                        try
-                        {
-                            photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
-                            {
-                                PhotoSize = PhotoSize.Medium
-                            });
-                        }
-                        catch (MediaPermissionException)
-                        {
-                            await DisplayAlert("Error", "No permission to take photo", "OK");
-                        }
-                    else
-                        await DisplayAlert("Error", "Camera is not available", "OK");
-                    break;
+            if (action == Resource.EmptyFile)
+                AddItem_Clicked(sender, e);
 
-                default:
-                    return;
+            else if (action == Resource.PickFromGallery)
+            {
+                if (CrossMedia.Current.IsPickPhotoSupported)
+                    try
+                    {
+                        photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                        {
+                            PhotoSize = PhotoSize.Medium
+                        });
+                    }
+                    catch (MediaPermissionException)
+                    {
+                        await DisplayAlert(Resource.Error, Resource.NoPickPhotoPermission, Resource.Ok);
+                    }
+                else
+                    await DisplayAlert(Resource.Error, Resource.GalleryNotAvailable, Resource.Ok);
             }
+            else if (action == Resource.TakePhoto)
+            {
+                if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+                    try
+                    {
+                        photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
+                        {
+                            PhotoSize = PhotoSize.Medium
+                        });
+                    }
+                    catch (MediaPermissionException)
+                    {
+                        await DisplayAlert(Resource.Error, Resource.NoTakePhotoPermission, Resource.Ok);
+                    }
+                else
+                    await DisplayAlert(Resource.Error, Resource.CameraNotAvailable, Resource.Ok);
+            }
+            else
+                return;
 
             if (photo == null)
                 return;
                     
             IsBusy = true;
             var text = await CognitiveServices.ComputerVision.OCRAsync(photo.Path);
-            await CreateFileAsync("New file", "Recognized text from photo", text);
+            await CreateFileAsync(Resource.NewFile, Resource.RecognizedText, text);
             IsBusy = false;
         }
 

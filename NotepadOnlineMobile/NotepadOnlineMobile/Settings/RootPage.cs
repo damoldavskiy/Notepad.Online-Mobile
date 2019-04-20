@@ -2,23 +2,23 @@
 {
     class RootPage : AbstractPage
     {
-        public RootPage() : base("Settings")
+        public RootPage() : base(Resource.Settings)
         {
             Items.Add(new SettingsItem
             {
-                Header = "Account",
+                Header = Resource.Account,
                 Action = (item) => Navigation.PushAsync(new AccountPage())
             });
 
             Items.Add(new SettingsItem
             {
-                Header = "Editor",
+                Header = Resource.Editor,
                 Action = (item) => Navigation.PushAsync(new EditorPage())
             });
 
             Items.Add(new SettingsItem
             {
-                Header = "Files",
+                Header = Resource.Files,
                 Action = (item) => Navigation.PushAsync(new FilesPage())
             });
         }

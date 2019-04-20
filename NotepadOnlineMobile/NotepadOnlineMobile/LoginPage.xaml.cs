@@ -62,7 +62,7 @@ namespace NotepadOnlineMobile
 
                 if (result != DataBase.ReturnCode.Success)
                 {
-                    await DisplayAlert("Error", $"An error occurred during login. {result.GetDescription()}", "OK");
+                    await DisplayAlert(Resource.Error, Resource.LoginError + " " + result.GetDescription(), Resource.Ok);
                     return;
                 }
 
@@ -78,7 +78,7 @@ namespace NotepadOnlineMobile
             
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during login. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.LoginError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 

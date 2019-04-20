@@ -5,9 +5,9 @@
              x:Class="NotepadOnlineMobile.EditorPage"
              Title="{Binding Name}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Secondary" Text="Save" Clicked="Save_Clicked"/>
-        <ToolbarItem Order="Secondary" Text="Rename" Clicked="Rename_Clicked"/>
-        <ToolbarItem Order="Secondary" Text="Delete" Clicked="Delete_Clicked"/>
+        <ToolbarItem Order="Secondary" Text="{x:Static local:Resource.Save}" Clicked="Save_Clicked"/>
+        <ToolbarItem Order="Secondary" Text="{x:Static local:Resource.Rename}" Clicked="Rename_Clicked"/>
+        <ToolbarItem Order="Secondary" Text="{x:Static local:Resource.Delete}" Clicked="Delete_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>

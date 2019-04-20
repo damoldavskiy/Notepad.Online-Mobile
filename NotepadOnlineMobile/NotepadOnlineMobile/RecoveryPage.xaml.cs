@@ -61,7 +61,7 @@ namespace NotepadOnlineMobile
         {
             if (NewPassword != ConfirmNewPassword)
             {
-                await DisplayAlert("Error", "You should confirm new password by typing it to the needed box", "OK");
+                await DisplayAlert(Resource.Error, Resource.TypeNewPassword, Resource.Ok);
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during recovering password. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.RecoveryError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 

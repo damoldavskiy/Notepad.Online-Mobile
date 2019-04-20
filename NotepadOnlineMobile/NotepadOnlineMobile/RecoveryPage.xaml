@@ -7,11 +7,11 @@
     <ContentPage.Content>
         <Grid>
             <StackLayout Margin="30" VerticalOptions="Center">
-                <Label FontSize="30" Margin="0,0,0,10" Text="Password recovery" HorizontalOptions="Center" TextColor="{StaticResource TextDark}"/>
-                <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail" Style="{StaticResource LoginEntry}"/>
-                <Entry Text="{Binding NewPassword}" IsPassword="True" Placeholder="New password" Style="{StaticResource LoginEntry}"/>
-                <Entry Text="{Binding ConfirmNewPassword}" IsPassword="True" Placeholder="Confirm new password" Style="{StaticResource LoginEntry}"/>
-                <Button Clicked="Button_Clicked" Text="Recovery" Margin="0,10,0,0" Style="{StaticResource LoginButton}"/>
+                <Label FontSize="30" Margin="0,0,0,10" Text="{x:Static local:Resource.PasswordRecovery}" HorizontalOptions="Center" TextColor="{StaticResource TextDark}"/>
+                <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="{x:Static local:Resource.Email}" Style="{StaticResource LoginEntry}"/>
+                <Entry Text="{Binding NewPassword}" IsPassword="True" Placeholder="{x:Static local:Resource.NewPassword}" Style="{StaticResource LoginEntry}"/>
+                <Entry Text="{Binding ConfirmNewPassword}" IsPassword="True" Placeholder="{x:Static local:Resource.ConfirmNewPassword}" Style="{StaticResource LoginEntry}"/>
+                <Button Clicked="Button_Clicked" Text="{x:Static local:Resource.Recovery}" Margin="0,10,0,0" Style="{StaticResource LoginButton}"/>
             </StackLayout>
             <local:LoadingView Showed="{Binding IsBusy}"/>
         </Grid>

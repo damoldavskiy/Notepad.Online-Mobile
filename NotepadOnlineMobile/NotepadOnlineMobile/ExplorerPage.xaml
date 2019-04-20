@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:NotepadOnlineMobile"
              x:Class="NotepadOnlineMobile.ExplorerPage"
              BackgroundColor="{StaticResource BackgroundDark}"
-             Title="Explorer">
+             Title="{x:Static local:Resource.Explorer}">
     <ContentPage.Content>
         <Grid>
             <local:RecyclerView ItemTapped="Menu_ItemTapped" SeparatorVisibility="None" SelectionMode="None" RowHeight="100" IsPullToRefreshEnabled="True" Refreshing="Menu_Refreshing" ItemsSource="{Binding Items}" CircleColor="{StaticResource BackgroundLight}" ArrowColor="{StaticResource PrimaryLight}">
@@ -21,7 +21,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </local:RecyclerView>
-            <Label FontFamily="sans-serif-light" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Text="Files appear here" IsVisible="False" TextColor="{StaticResource TextLight}">
+            <Label FontFamily="sans-serif-light" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Text="{x:Static local:Resource.FilesAppearHere}" IsVisible="False" TextColor="{StaticResource TextLight}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label" Binding="{Binding Items.Count}" Value="0">
                         <Setter Property="IsVisible" Value="True"/>

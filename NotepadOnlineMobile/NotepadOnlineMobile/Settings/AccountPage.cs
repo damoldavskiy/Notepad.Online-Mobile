@@ -4,12 +4,12 @@ namespace NotepadOnlineMobile.Settings
 {
     class AccountPage : AbstractPage
     {
-        public AccountPage() : base("Account")
+        public AccountPage() : base(Resource.Account)
         {
             Items.Add(new SettingsItem
             {
-                Header = "Auto-login",
-                Value = Storage.AutoLogin ? "Enabled" : "Disabled",
+                Header = Resource.AutoLogin,
+                Value = Storage.AutoLogin ? Resource.Enabled : Resource.Disabled,
                 ValueVisible = true,
                 SwitcherVisible = true,
                 SwitcherToggled = Storage.AutoLogin,
@@ -18,13 +18,13 @@ namespace NotepadOnlineMobile.Settings
                     if (Storage.AutoLogin)
                     {
                         Storage.AutoLogin = false;
-                        item.Value = "Disabled";
+                        item.Value = Resource.Disabled;
                         item.SwitcherToggled = false;
                     }
                     else
                     {
                         Storage.AutoLogin = true;
-                        item.Value = "Enabled";
+                        item.Value = Resource.Enabled;
                         item.SwitcherToggled = true;
                     }
                 }
@@ -32,12 +32,12 @@ namespace NotepadOnlineMobile.Settings
 
             Items.Add(new SettingsItem
             {
-                Header = "Change password",
+                Header = Resource.ChangePassword,
                 Action = (item) =>
                 {
                     var page = new ChangePasswordPage
                     {
-                        Title = "Changing password"
+                        Title = Resource.ChangePassword
                     };
                     Navigation.PushAsync(page);
                 }
@@ -45,7 +45,7 @@ namespace NotepadOnlineMobile.Settings
 
             Items.Add(new SettingsItem
             {
-                Header = "Log out",
+                Header = Resource.Log_out,
                 Action = (item) =>
                 {
                     Storage.Email = null;

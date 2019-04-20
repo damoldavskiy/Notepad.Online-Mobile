@@ -37,7 +37,7 @@ namespace NotepadOnlineMobile
 
             if (result != DataBase.ReturnCode.Success)
             {
-                await DisplayAlert("Error", $"An error occurred during confirming registration. {result.GetDescription()}", "OK");
+                await DisplayAlert(Resource.Error, Resource.RecoveryConfirmationError + " " + result.GetDescription(), Resource.Ok);
                 return;
             }
 

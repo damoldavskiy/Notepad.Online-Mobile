@@ -2,12 +2,12 @@
 {
     class FilesPage : AbstractPage
     {
-        public FilesPage() : base("Files")
+        public FilesPage() : base(Resource.Files)
         {
             Items.Add(new SettingsItem
             {
-                Header = "Ask before delete",
-                Value = Storage.AskDelete ? "Enabled" : "Disabled",
+                Header = Resource.AskBeforeDelete,
+                Value = Storage.AskDelete ? Resource.Enabled : Resource.Disabled,
                 ValueVisible = true,
                 SwitcherVisible = true,
                 SwitcherToggled = Storage.AskDelete,
@@ -16,13 +16,13 @@
                     if (Storage.AskDelete)
                     {
                         Storage.AskDelete = false;
-                        item.Value = "Disabled";
+                        item.Value = Resource.Disabled;
                         item.SwitcherToggled = false;
                     }
                     else
                     {
                         Storage.AskDelete = true;
-                        item.Value = "Enabled";
+                        item.Value = Resource.Enabled;
                         item.SwitcherToggled = true;
                     }
                 }
@@ -30,8 +30,8 @@
 
             Items.Add(new SettingsItem
             {
-                Header = "Preload files",
-                Value = Storage.Preload ? "Files load on start" : "Files load on tap",
+                Header = Resource.PreloadFiles,
+                Value = Storage.Preload ? Resource.FilesLoadOnStart : Resource.FilesLoadOnTap,
                 ValueVisible = true,
                 SwitcherVisible = true,
                 SwitcherToggled = Storage.Preload,
@@ -40,13 +40,13 @@
                     if (Storage.Preload)
                     {
                         Storage.Preload = false;
-                        item.Value = "Files load on tap";
+                        item.Value = Resource.FilesLoadOnTap;
                         item.SwitcherToggled = false;
                     }
                     else
                     {
                         Storage.Preload = true;
-                        item.Value = "Files load on start";
+                        item.Value = Resource.FilesLoadOnStart;
                         item.SwitcherToggled = true;
                     }
                 }
@@ -54,22 +54,22 @@
 
             Items.Add(new SettingsItem
             {
-                Header = "Description type",
-                Value = Storage.UseKeyWords ? "Key words" : "First characters",
+                Header = Resource.DescriptionType,
+                Value = Storage.UseKeyWords ? Resource.KeyWords : Resource.FirstCharacters,
                 ValueVisible = true,
                 Action = async (item) =>
                 {
-                    var result = await DisplayActionSheet("Description type", "Cancel", null, "Key words", "First characters");
+                    var result = await DisplayActionSheet(Resource.DescriptionType, Resource.Cancel, null, Resource.KeyWords, Resource.FirstCharacters);
 
-                    if (result == "First characters")
+                    if (result == Resource.FirstCharacters)
                     {
                         Storage.UseKeyWords = false;
-                        item.Value = "First characters";
+                        item.Value = Resource.FirstCharacters;
                     }
-                    else if (result == "Key words")
+                    else if (result == Resource.KeyWords)
                     {
                         Storage.UseKeyWords = true;
-                        item.Value = "Key words";
+                        item.Value = Resource.KeyWords;
                     }
                 }
             });
