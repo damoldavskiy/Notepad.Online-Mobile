@@ -404,7 +404,7 @@ namespace NotepadOnlineMobile {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Notepad.Online Mobile
-        ///Version: 1.0
+        ///Version: 1.1
         ///
         ///Have a question? Contact with developer: party_50@mail.ru.
         /// </summary>
